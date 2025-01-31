@@ -1,0 +1,70 @@
+# Build output
+.next
+dist
+build
+out
+
+# Dependencies
+node_modules
+
+# Testing
+coverage
+__tests__
+__mocks__
+
+# Config files
+*.config.js
+*.config.ts
+*.config.mjs
+*.config.cjs
+
+# Public assets
+public
+
+# CSS files (if you're not linting CSS)
+*.css
+*.scss
+*.sass
+*.less
+
+# Scripts
+scripts
+
+# Generated files
+*.generated.*
+
+# Compiled output
+esm
+
+# Documentation
+*.md
+docs
+
+# IDE/Editor folders
+.vscode
+.idea
+
+# Misc
+.cache
+.env*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Specific Next.js files
+next-env.d.ts
+
+# Specific project files (if needed)
+# project-specific-file.js

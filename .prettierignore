@@ -1,0 +1,76 @@
+# Build output
+dist
+build
+.next
+out
+
+# Dependencies
+node_modules
+bower_components
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+coverage
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE/Editor folders
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Compiled binary addons
+build/Release
+
+# Typescript
+*.tsbuildinfo
+
+# Next.js
+.next
+out
+
+# Vercel
+.vercel
+
+# Custom scripts
+scripts
+
+# Package manager files
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Cache directories
+.cache
+.npm
+
+# Storybook
+storybook-static
+
+# Misc
+*.bak
+*.orig
