@@ -1,5 +1,5 @@
 "use client";
-import { ThemeProvider } from "@material-tailwind/react";
+import { ThemeProvider } from "@/theme/material-tailwind/material-tailwind";
 import React from "react";
 
 const theme = {

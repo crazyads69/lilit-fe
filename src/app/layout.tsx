@@ -1,11 +1,8 @@
-"use client";
-
 import { Fira_Code, Inter } from "next/font/google";
 import React from "react";
 
 import "./globals.css";
-
-import MaterialThemeProvider from "@/theme/theme-provider";
+import { Metadata } from "next";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -19,6 +16,52 @@ const firaCode = Fira_Code({
     variable: "--font-fira-code",
 });
 
+export const metadata: Metadata = {
+    metadataBase: new URL("https://lilit.io.vn"),
+    title: "LILIT - Nền tảng truyện miễn phí, không quảng cáo",
+    description:
+        "Khám phá thế giới truyện đa dạng tại LILIT - nền tảng truyện miễn phí, không quảng cáo. Đọc truyện online mọi lúc, mọi nơi.",
+    keywords: ["truyện online", "đọc truyện miễn phí", "nền tảng truyện", "không quảng cáo"],
+    authors: [{ name: "LILIT Team" }],
+    openGraph: {
+        title: "LILIT - Nền tảng truyện miễn phí",
+        description: "Đọc truyện online miễn phí, không quảng cáo tại LILIT",
+        url: "https://lilit.io.vn",
+        siteName: "LILIT",
+        images: [
+            {
+                url: "/og-image.jpg",
+                width: 1200,
+                height: 630,
+                alt: "LILIT - Nền tảng truyện miễn phí",
+            },
+        ],
+        locale: "vi_VN",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "LILIT - Đọc truyện online miễn phí",
+        description:
+            "Khám phá thế giới truyện đa dạng tại LILIT - không quảng cáo, hoàn toàn miễn phí",
+        images: ["/twitter-image.jpg"],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
+    verification: {
+        google: "eorL2gXY6dNP9yA19deBYBMbAGhdRx5M2yVsFO-JRSY",
+    },
+};
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -26,11 +69,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="vi">
-            <MaterialThemeProvider>
-                <body className={`${inter.variable} ${firaCode.variable} antialiased`}>
-                    {children}
-                </body>
-            </MaterialThemeProvider>
+            <body className={`${inter.variable} ${firaCode.variable} antialiased`}>{children}</body>
         </html>
     );
 }
