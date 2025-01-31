@@ -1,8 +1,49 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        title: "LILIT - Nền tảng truyện miễn phí, không quảng cáo",
+        description:
+            "Khám phá thế giới truyện đa dạng tại LILIT - nền tảng truyện miễn phí, không quảng cáo. Đọc truyện online mọi lúc, mọi nơi.",
+        keywords: ["truyện online", "đọc truyện miễn phí", "nền tảng truyện", "không quảng cáo"],
+        authors: [{ name: "LILIT Team" }],
+        openGraph: {
+            title: "LILIT - Nền tảng truyện miễn phí",
+            description: "Đọc truyện online miễn phí, không quảng cáo tại LILIT",
+            url: "https://lilit.io.vn",
+            siteName: "LILIT",
+            images: [
+                {
+                    url: "https://lilit.com/og-image.jpg",
+                    width: 1200,
+                    height: 630,
+                    alt: "LILIT - Nền tảng truyện miễn phí",
+                },
+            ],
+            locale: "vi_VN",
+            type: "website",
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                "max-video-preview": -1,
+                "max-image-preview": "large",
+                "max-snippet": -1,
+            },
+        },
+        verification: {
+            google: "your-google-verification-code",
+        },
+    };
+}
 
 export default function Home() {
     return (
-        <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
+        <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 sm:p-20">
             <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
                 <Image
                     priority
@@ -12,7 +53,7 @@ export default function Home() {
                     src="/next.svg"
                     width={180}
                 />
-                <ol className="list-inside list-decimal text-center font-[family-name:var(--font-geist-mono)] text-sm sm:text-left">
+                <ol className="list-inside list-decimal text-center text-sm sm:text-left">
                     <li className="mb-2">
                         Get started by editing{" "}
                         <code className="rounded bg-black/[.05] px-1 py-0.5 font-semibold dark:bg-white/[.06]">

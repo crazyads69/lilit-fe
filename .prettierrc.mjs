@@ -1,4 +1,4 @@
-export default {
+const config = {
     $schema: "https://json.schemastore.org/prettierrc.json",
     printWidth: 100,
     tabWidth: 4,
@@ -17,3 +17,5 @@ export default {
     vueIndentScriptAndStyle: false,
     plugins: ["prettier-plugin-tailwindcss"],
 };
+
+export default config;
