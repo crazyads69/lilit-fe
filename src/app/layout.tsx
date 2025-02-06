@@ -24,6 +24,7 @@ export const metadata: Metadata = {
             "vi-VN": "https://lilit.io.vn",
         },
     },
+    applicationName: "LILIT",
     appleWebApp: {
         title: "LILIT",
     },
@@ -67,8 +68,8 @@ export const metadata: Metadata = {
         },
     },
     verification: {
-        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-        yandex: process.env.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION,
+        google: "eorL2gXY6dNP9yA19deBYBMbAGhdRx5M2yVsFO",
+        yandex: "2f2fc2d1658d751f",
     },
 };
 
