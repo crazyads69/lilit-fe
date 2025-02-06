@@ -137,7 +137,7 @@ const nextConfig: NextConfig = {
 
     // Internationalization
     i18n: {
-        locales: ["vi", "en"],
+        locales: ["vi"],
         defaultLocale: "vi",
     },
 

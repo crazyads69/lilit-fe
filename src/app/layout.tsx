@@ -1,8 +1,8 @@
+import { Metadata } from "next";
 import { Fira_Code, Inter } from "next/font/google";
 import React from "react";
 
 import "./globals.css";
-import { Metadata } from "next";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -18,6 +18,15 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://lilit.io.vn"),
+    alternates: {
+        canonical: "https://lilit.io.vn",
+        languages: {
+            "vi-VN": "https://lilit.io.vn",
+        },
+    },
+    appleWebApp: {
+        title: "LILIT",
+    },
     title: "LILIT - Nền tảng truyện miễn phí, không quảng cáo",
     description:
         "Khám phá thế giới truyện đa dạng tại LILIT - nền tảng truyện miễn phí, không quảng cáo. Đọc truyện online mọi lúc, mọi nơi.",
@@ -31,8 +40,8 @@ export const metadata: Metadata = {
         images: [
             {
                 url: "/og-image.jpg",
-                width: 1200,
-                height: 630,
+                width: 1920,
+                height: 1080,
                 alt: "LILIT - Nền tảng truyện miễn phí",
             },
         ],
@@ -58,7 +67,8 @@ export const metadata: Metadata = {
         },
     },
     verification: {
-        google: "eorL2gXY6dNP9yA19deBYBMbAGhdRx5M2yVsFO-JRSY",
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        yandex: process.env.NEXT_PUBLIC_YANDEX_SITE_VERIFICATION,
     },
 };
 
