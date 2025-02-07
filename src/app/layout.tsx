@@ -1,14 +1,15 @@
 import { Metadata } from "next";
 import { Fira_Code, Inter } from "next/font/google";
-import Script from "next/script";
 import React from "react";
 
 import "@ant-design/v5-patch-for-react-19";
 
 import ReduxProvider from "@/redux/provider/provider";
-import ThemeProvider from "@/theme/theme-provider/theme-provider";
 
 import "./globals.css";
+import { ThemeProvider } from "next-themes";
+
+import AntdThemeProvider from "@/theme/antd-theme-provider/antd-theme-provider";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -85,33 +86,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html suppressHydrationWarning className="no-js" lang="vi">
-            <head>
-                <Script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            (function() {
-                                document.documentElement.classList.remove('no-js');
-                                try {
-                                    let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                                    const savedTheme = localStorage.getItem('theme');
-                                    if (savedTheme) {
-                                        isDark = savedTheme === 'dark';
-                                    }
-                                    if (isDark) {
-                                        document.documentElement.classList.add('dark');
-                                    }
-                                } catch (e) {}
-                            })();
-                        `,
-                    }}
-                    id="theme-script"
-                    strategy="beforeInteractive"
-                />
-            </head>
+        <html suppressHydrationWarning lang="vi">
             <body className={`${inter.variable} ${firaCode.variable} antialiased`}>
                 <ReduxProvider>
-                    <ThemeProvider>{children}</ThemeProvider>
+                    <ThemeProvider enableSystem attribute="class" defaultTheme="system">
+                        <AntdThemeProvider>{children}</AntdThemeProvider>
+                    </ThemeProvider>
                 </ReduxProvider>
             </body>
         </html>
