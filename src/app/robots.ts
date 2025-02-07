@@ -2,17 +2,11 @@ import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
     return {
-        rules: [
-            {
-                userAgent: "Googlebot",
-                allow: ["/"],
-                disallow: "/private/",
-            },
-            {
-                userAgent: ["Applebot", "Bingbot"],
-                disallow: ["/"],
-            },
-        ],
-        sitemap: "https://lilit.io.vn/sitemap.xml",
+        rules: {
+            userAgent: "*",
+            allow: "/",
+            disallow: "/admin/", // Disallow all pages under /admin/ path
+        },
+        sitemap: "https://lilit.io.cvn/sitemap.xml",
     };
 }

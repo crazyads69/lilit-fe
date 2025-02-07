@@ -1,8 +1,6 @@
-import withMT from "@material-tailwind/react/utils/withMT";
-
 import type { Config } from "tailwindcss";
 
-export default withMT({
+export default {
     content: [
         "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -67,4 +65,4 @@ export default withMT({
         require("@tailwindcss/forms"),
         require("@tailwindcss/aspect-ratio"),
     ],
-} satisfies Config);
+} satisfies Config;
