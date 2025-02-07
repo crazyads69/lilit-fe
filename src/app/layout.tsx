@@ -1,16 +1,14 @@
 import { Metadata } from "next";
 import { Fira_Code, Inter } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import React from "react";
 
 import "@ant-design/v5-patch-for-react-19";
-
-import ReduxProvider from "@/redux/provider/provider";
-
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 
-import AntdThemeProvider from "@/theme/antd-theme-provider/antd-theme-provider";
 import SchemaOrg from "@/components/global/schema-org/schema-org";
+import ReduxProvider from "@/redux/provider/provider";
+import AntdThemeProvider from "@/theme/antd-theme-provider/antd-theme-provider";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -29,7 +27,7 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://lilit.io.vn",
         languages: {
-            "vi-VN": "https://lilit.io.vn",
+            vi: "https://lilit.io.vn",
         },
     },
     applicationName: "LILIT",
@@ -39,7 +37,38 @@ export const metadata: Metadata = {
     title: "LILIT - Nền tảng truyện miễn phí, không quảng cáo",
     description:
         "Khám phá thế giới truyện đa dạng tại LILIT - nền tảng truyện miễn phí, không quảng cáo. Đọc truyện online mọi lúc, mọi nơi.",
-    keywords: ["truyện online", "đọc truyện miễn phí", "nền tảng truyện", "không quảng cáo"],
+    keywords: [
+        "truyện online",
+        "đọc truyện miễn phí",
+        "nền tảng truyện",
+        "không quảng cáo",
+        "truyện tiếng Việt",
+        "truyện chữ",
+        "truyện ngắn",
+        "truyện dài kỳ",
+        "truyện ngôn tình",
+        "truyện kiếm hiệp",
+        "truyện trinh thám",
+        "truyện kinh dị",
+        "truyện huyền huyễn",
+        "truyện lịch sử",
+        "truyện cổ tích",
+        "truyện tranh",
+        "truyện đam mỹ",
+        "truyện bách hợp",
+        "sáng tác truyện",
+        "xuất bản truyện",
+        "truyện teen",
+        "tiểu thuyết online",
+        "đọc sách miễn phí",
+        "ứng dụng đọc truyện",
+        "truyện hay",
+        "truyện mới cập nhật",
+        "truyện full",
+        "truyện convert",
+        "truyện dịch",
+        "wattpad alternative",
+    ],
     authors: [{ name: "LILIT Team" }],
     openGraph: {
         title: "LILIT - Nền tảng truyện miễn phí",
