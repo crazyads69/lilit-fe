@@ -1,13 +1,12 @@
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { ConfigProvider } from "antd";
-import viVN from "antd/locale/vi_VN";
 import { Metadata } from "next";
 import { Fira_Code, Inter } from "next/font/google";
 import React from "react";
+
 import "@ant-design/v5-patch-for-react-19";
 
-import "./globals.css";
 import ReduxProvider from "@/redux/provider/provider";
+import ThemeProvider from "@/theme/theme-provider/theme-provider";
+import "./globals.css";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -87,9 +86,7 @@ export default function RootLayout({
         <html lang="vi">
             <body className={`${inter.variable} ${firaCode.variable} antialiased`}>
                 <ReduxProvider>
-                    <ConfigProvider locale={viVN}>
-                        <AntdRegistry>{children}</AntdRegistry>
-                    </ConfigProvider>
+                    <ThemeProvider>{children}</ThemeProvider>
                 </ReduxProvider>
             </body>
         </html>
