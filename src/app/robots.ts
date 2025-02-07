@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: "/",
             disallow: "/admin/", // Disallow all pages under /admin/ path
         },
-        sitemap: "https://lilit.io.cvn/sitemap.xml",
+        sitemap: "https://lilit.io.vn/sitemap.xml",
     };
 }

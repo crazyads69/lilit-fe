@@ -10,6 +10,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 
 import AntdThemeProvider from "@/theme/antd-theme-provider/antd-theme-provider";
+import SchemaOrg from "@/components/global/schema-org/schema-org";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -87,6 +88,16 @@ export default function RootLayout({
 }>) {
     return (
         <html suppressHydrationWarning lang="vi">
+            <head>
+                <SchemaOrg
+                    dateModified="2025-02-07T08:00:00+07:00"
+                    datePublished="2025-02-07T08:00:00+07:00"
+                    description="Khám phá thế giới truyện đa dạng tại LILIT - nền tảng truyện miễn phí, không quảng cáo. Đọc truyện online mọi lúc, mọi nơi."
+                    images={["/og-image.jpg"]}
+                    title="LILIT - Nền tảng truyện miễn phí, không quảng cáo"
+                    url="https://lilit.io.vn"
+                />
+            </head>
             <body className={`${inter.variable} ${firaCode.variable} antialiased`}>
                 <ReduxProvider>
                     <ThemeProvider enableSystem attribute="class" defaultTheme="system">
