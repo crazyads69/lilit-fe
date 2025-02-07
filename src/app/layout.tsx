@@ -85,19 +85,22 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html suppressHydrationWarning lang="vi">
+        <html suppressHydrationWarning className="no-js" lang="vi">
             <head>
                 <Script
                     dangerouslySetInnerHTML={{
                         __html: `
                             (function() {
+                                document.documentElement.classList.remove('no-js');
                                 try {
                                     let isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                                     const savedTheme = localStorage.getItem('theme');
                                     if (savedTheme) {
                                         isDark = savedTheme === 'dark';
                                     }
-                                    document.documentElement.classList.toggle('dark', isDark);
+                                    if (isDark) {
+                                        document.documentElement.classList.add('dark');
+                                    }
                                 } catch (e) {}
                             })();
                         `,

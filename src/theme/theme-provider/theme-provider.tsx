@@ -20,9 +20,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
         setMounted(true);
         const savedTheme = getInitialTheme();
 
-        if (savedTheme) {
-            dispatch(setTheme(savedTheme));
-        }
+        dispatch(setTheme(savedTheme));
     }, [dispatch]);
 
     useEffect(() => {
@@ -33,7 +31,9 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
     return (
         <ConfigProvider locale={viVN} theme={getTheme(themeMode)}>
-            <div className={`${mounted ? "" : "invisible"} transition-opacity duration-300`}>
+            <div
+                className={`${mounted ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+            >
                 <AntdRegistry>{children}</AntdRegistry>
             </div>
         </ConfigProvider>
