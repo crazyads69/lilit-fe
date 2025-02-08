@@ -1,9 +1,11 @@
 "use client";
+import { GoogleOutlined } from "@ant-design/icons";
 import { Button, Layout, Typography, Flex, Card, Form, Input } from "antd";
 import "@ant-design/v5-patch-for-react-19";
-import { GoogleOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+
+import MatrixBackground from "@/components/global/matrix-background/matrix-background";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Link } = Typography;
@@ -15,16 +17,24 @@ export default function HomePage() {
     const currentTheme = theme === "system" ? resolvedTheme : theme;
 
     return (
-        <Layout className="flex min-h-screen w-full flex-col items-center justify-start">
+        <Layout className="flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm">
+            <MatrixBackground />
             <Header className="flex h-20 w-full items-center justify-between px-6 shadow-md">
-                <Image
-                    alt="LILIT"
-                    className="cursor-pointer"
-                    draggable={false}
-                    height={56}
-                    src={currentTheme === "dark" ? "/lilit_logo_dark.svg" : "/lilit_logo_light.svg"}
-                    width={56}
-                />
+                <Link href="/">
+                    <Image
+                        alt="LILIT"
+                        className="cursor-pointer"
+                        draggable={false}
+                        height={56}
+                        src={
+                            currentTheme === "dark"
+                                ? "/lilit_logo_dark.svg"
+                                : "/lilit_logo_light.svg"
+                        }
+                        width={56}
+                    />
+                </Link>
+
                 <Button
                     className="flex items-center justify-center rounded-full text-lg font-bold transition-all hover:scale-105"
                     size="large"
