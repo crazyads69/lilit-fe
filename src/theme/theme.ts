@@ -46,9 +46,9 @@ const lightTheme: ThemeConfig = {
         colorTextDisabled: "rgba(0, 0, 0, 0.25)",
 
         // Border
-        borderRadius: 4,
-        borderRadiusLG: 8,
-        borderRadiusSM: 2,
+        borderRadius: 8,
+        borderRadiusLG: 16,
+        borderRadiusSM: 4,
         colorBorder: "#d9d9d9",
         colorSplit: "#f0f0f0",
 
@@ -127,6 +127,7 @@ const lightTheme: ThemeConfig = {
             onlyIconSizeSM: 14,
             onlyIconSizeLG: 18,
             groupBorderColor: "#d9d9d9",
+            borderRadius: 20,
         },
         Input: {
             controlHeight: 36,
@@ -141,6 +142,7 @@ const lightTheme: ThemeConfig = {
             activeBorderColor: "#4497f7",
             hoverBorderColor: "#60a6f8",
             addonBg: "#fafafa",
+            borderRadius: 8,
         },
         Select: {
             controlHeight: 36,
@@ -311,8 +313,8 @@ const darkTheme: ThemeConfig = {
         colorLinkActive: "#94c3fa",
 
         // Border
-        borderRadius: 6,
-        borderRadiusLG: 10,
+        borderRadius: 8,
+        borderRadiusLG: 16,
         borderRadiusSM: 4,
         colorBorder: "#424242",
         colorSplit: "#303030",
@@ -348,11 +350,13 @@ const darkTheme: ThemeConfig = {
             colorBorder: "#424242",
             colorText: "rgba(255, 255, 255, 0.85)",
             algorithm: true,
+            primaryShadow: "none",
         },
         Input: {
             ...lightTheme.components?.Input,
             colorBgContainer: "#141414",
             colorBorder: "#424242",
+            addonBg: "#1f1f1f",
             colorTextDisabled: "rgba(255, 255, 255, 0.30)",
             algorithm: true,
         },

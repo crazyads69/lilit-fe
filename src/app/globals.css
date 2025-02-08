@@ -56,7 +56,7 @@
 
 body {
     color: var(--ant-text-color);
-    background: var(--ant-body-background);
+    background-color: var(--ant-body-background);
     font-family: var(--ant-font-family);
 }
 
@@ -107,19 +107,8 @@ body {
     }
 }
 
-body {
-    @apply bg-bg text-text transition-colors duration-300;
-}
-
 .invisible {
     opacity: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #141414;
-        color: rgba(255, 255, 255, 0.85);
-    }
 }
 
 html.no-js {
@@ -128,4 +117,34 @@ html.no-js {
 
 html:not(.no-js) {
     visibility: visible;
+}
+
+/* Dark mode specific styles for input fields */
+.dark .ant-input,
+.dark .ant-input-affix-wrapper {
+    background-color: var(--ant-component-background);
+    color: var(--ant-text-color);
+}
+
+.dark .ant-input:hover,
+.dark .ant-input-affix-wrapper:hover {
+    border-color: var(--ant-primary-color);
+}
+
+.dark .ant-input:focus,
+.dark .ant-input-affix-wrapper-focused {
+    border-color: var(--ant-primary-color-active);
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline);
+}
+
+.dark .ant-input-affix-wrapper .ant-input {
+    background-color: transparent;
+}
+
+.dark .ant-input-password-icon {
+    color: var(--ant-text-color-secondary);
+}
+
+.dark .ant-input-password-icon:hover {
+    color: var(--ant-text-color);
 }
