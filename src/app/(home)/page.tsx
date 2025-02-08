@@ -19,7 +19,7 @@ export default function HomePage() {
     return (
         <Layout className="flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm md:h-full">
             <MatrixBackground />
-            <Header className="flex h-20 w-full items-center justify-between bg-transparent px-6 shadow-md">
+            <Header className="flex h-20 w-full items-center justify-between bg-transparent px-6">
                 <Link href="/">
                     <Image
                         alt="LILIT"
