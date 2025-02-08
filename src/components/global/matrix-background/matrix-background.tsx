@@ -36,11 +36,11 @@ function MatrixBackground() {
             if (currentTheme === "dark") {
                 ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "rgba(255, 255, 255, 0.7)"; // Changed to white in dark mode
+                ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
             } else {
                 ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = "rgba(0, 0, 0, 0.3)"; // Changed to black in light mode
+                ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
             }
 
             ctx.font = "12px monospace";
