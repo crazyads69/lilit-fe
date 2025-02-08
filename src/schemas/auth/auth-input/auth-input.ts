@@ -60,5 +60,11 @@ export const registerInputSchema = z.object({
     device_id: z.string().min(1, "ID thiết bị là bắt buộc"),
 });
 
+export const loginSchema = z.object({
+    email: z.string().email("Địa chỉ email không hợp lệ"),
+    password: z.string().min(8, "Mật khẩu phải có ít nhất 8 ký tự"),
+});
+
 export type LoginInput = z.infer<typeof loginInputSchema>;
 export type RegisterInput = z.infer<typeof registerInputSchema>;
+export type LoginFormData = z.infer<typeof loginSchema>;

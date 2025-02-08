@@ -19,7 +19,7 @@ export default function HomePage() {
     return (
         <Layout className="flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm">
             <MatrixBackground />
-            <Header className="flex h-20 w-full items-center justify-between px-6 shadow-md">
+            <Header className="flex h-20 w-full items-center justify-between bg-transparent px-6 shadow-md">
                 <Link href="/">
                     <Image
                         alt="LILIT"
@@ -106,7 +106,7 @@ export default function HomePage() {
                 </Flex>
             </Content>
 
-            <Footer className="flex h-fit w-full items-center justify-center">
+            <Footer className="flex h-fit w-full items-center justify-center bg-transparent">
                 <Link href="https://lilit.io.vn" target="_blank">
                     <Paragraph className="hover:underline">© 2025 LILIT</Paragraph>
                 </Link>
