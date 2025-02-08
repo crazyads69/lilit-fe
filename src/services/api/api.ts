@@ -79,7 +79,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
                     api.dispatch(logOut());
                 }
             } catch (error) {
-                console.error("Failed to refresh token:", error);
+                console.log("Failed to refresh token:", error);
                 api.dispatch(logOut());
             }
         } else {
@@ -109,8 +109,7 @@ export const api = createApi({
                     await queryFulfilled;
                 } catch (error) {
                     // Handle validation error (e.g., dispatch an action to show an error message)
-                    console.error("Login input validation failed:", error);
-                    throw error;
+                    console.log("Login input validation failed:", error);
                 }
             },
             transformResponse: (response) => loginResponseSchema.parse(response),
@@ -128,8 +127,7 @@ export const api = createApi({
                     registerInputSchema.parse(credentials);
                     await queryFulfilled;
                 } catch (error) {
-                    console.error("Register input validation failed:", error);
-                    throw error;
+                    console.log("Register input validation failed:", error);
                 }
             },
             transformResponse: (response) => registerResponseSchema.parse(response),

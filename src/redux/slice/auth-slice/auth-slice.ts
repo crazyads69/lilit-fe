@@ -33,7 +33,7 @@ const authSlice = createSlice({
                 localStorage.setItem("REFRESH_TOKEN", action.payload.refreshToken!);
                 localStorage.setItem("DEVICE_ID", action.payload.deviceId!);
             } catch (error) {
-                console.error("Error storing credentials in the local storage", error);
+                console.log("Error storing credentials in the local storage", error);
             }
         },
         setDeviceId(state, action: PayloadAction<string>) {
@@ -42,7 +42,7 @@ const authSlice = createSlice({
                 // store the device id in the local storage
                 localStorage.setItem("DEVICE_ID", action.payload);
             } catch (error) {
-                console.error("Error storing device id in the local storage", error);
+                console.log("Error storing device id in the local storage", error);
             }
         },
         setNewToken(state, action: PayloadAction<RefreshToken>) {
@@ -54,7 +54,7 @@ const authSlice = createSlice({
                 localStorage.setItem("ACCESS_TOKEN", action.payload.access_token);
                 localStorage.setItem("REFRESH_TOKEN", action.payload.refresh_token);
             } catch (error) {
-                console.error("Error storing new token in the local storage", error);
+                console.log("Error storing new token in the local storage", error);
             }
         },
         logOut(state) {
@@ -70,7 +70,7 @@ const authSlice = createSlice({
                 localStorage.removeItem("REFRESH_TOKEN");
                 localStorage.removeItem("DEVICE_ID");
             } catch (error) {
-                console.error("Failed to clear auth state from localStorage:", error);
+                console.log("Failed to clear auth state from localStorage:", error);
             }
         },
     },
@@ -100,7 +100,7 @@ export const initializeAuthState = (): AuthState => {
             deviceId: localStorage.getItem("DEVICE_ID"),
         };
     } catch (error) {
-        console.error("Error initializing auth state from the local storage", error);
+        console.log("Error initializing auth state from the local storage", error);
 
         return initialState;
     }

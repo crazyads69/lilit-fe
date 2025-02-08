@@ -1,11 +1,20 @@
 "use client";
-import { GoogleOutlined } from "@ant-design/icons";
+import { GoogleOutlined, LoadingOutlined } from "@ant-design/icons";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Layout, Typography, Flex, Card, Form, Input } from "antd";
 import "@ant-design/v5-patch-for-react-19";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { Controller, useForm } from "react-hook-form";
 
+import { AlertDisplay } from "@/components/global/alert-display/alert-display";
 import MatrixBackground from "@/components/global/matrix-background/matrix-background";
+import { useMessage } from "@/hooks/use-message/use-message";
+import { useAppDispatch } from "@/hooks/use-redux/use-redux";
+import { setCredentials } from "@/redux/slice/auth-slice/auth-slice";
+import { LoginFormData, loginSchema } from "@/schemas/auth/auth-input/auth-input";
+import { useLoginMutation } from "@/services/api/api";
+import { generateDeviceId } from "@/utils/device-id/device-id";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Link } = Typography;
@@ -15,6 +24,44 @@ const { Password } = Input;
 export default function HomePage() {
     const { theme, resolvedTheme } = useTheme();
     const currentTheme = theme === "system" ? resolvedTheme : theme;
+    const [login, { isLoading }] = useLoginMutation();
+    const dispatch = useAppDispatch();
+    const { showMessage } = useMessage();
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginFormData>({
+        resolver: zodResolver(loginSchema),
+    });
+
+    async function onSubmit(credentials: LoginFormData) {
+        try {
+            const deviceId = await generateDeviceId();
+
+            console.log("Device ID:", deviceId);
+            console.log("Credentials:", credentials);
+            const result = await login({ ...credentials, device_id: deviceId }).unwrap();
+
+            dispatch(
+                setCredentials({
+                    accessToken: result.data.access_token,
+                    refreshToken: result.data.refresh_token,
+                    deviceId: deviceId,
+                    user: result.data.user,
+                }),
+            );
+
+            showMessage(
+                "success",
+                "Đăng nhập thành công",
+                "Bạn đã đăng nhập thành công vào tài khoản của mình",
+            );
+        } catch (error) {
+            console.log("Failed to login:", error);
+            showMessage("error", "Đăng nhập thất bại", "Đã xảy ra lỗi khi đăng nhập");
+        }
+    }
 
     return (
         <Layout className="flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm md:h-full">
@@ -58,27 +105,53 @@ export default function HomePage() {
                         <Paragraph className="mb-8 text-center">
                             Đăng nhập để trải nghiệm tốt nhất
                         </Paragraph>
-                        <Form autoComplete="off" className="space-y-4" layout="vertical">
-                            <Item
-                                label="Email"
+                        <Form
+                            className="space-y-4"
+                            layout="vertical"
+                            onFinish={handleSubmit(onSubmit)}
+                        >
+                            <Controller
+                                control={control}
                                 name="email"
-                                rules={[{ required: true, message: "Vui lòng nhập email" }]}
-                            >
-                                <Input className="rounded-lg py-2" placeholder="Email" />
-                            </Item>
-                            <Item
-                                label="Mật khẩu"
+                                render={({ field }) => (
+                                    <Item
+                                        help={errors.email?.message}
+                                        label="Email"
+                                        validateStatus={errors.email ? "error" : ""}
+                                    >
+                                        <Input
+                                            {...field}
+                                            className="rounded-lg py-2"
+                                            placeholder="Email"
+                                        />
+                                    </Item>
+                                )}
+                            />
+
+                            <Controller
+                                control={control}
                                 name="password"
-                                rules={[{ required: true, message: "Vui lòng nhập mật khẩu" }]}
-                            >
-                                <Password className="rounded-lg py-2" placeholder="Mật khẩu" />
-                            </Item>
+                                render={({ field }) => (
+                                    <Item
+                                        help={errors.password?.message}
+                                        label="Mật khẩu"
+                                        validateStatus={errors.password ? "error" : ""}
+                                    >
+                                        <Password
+                                            {...field}
+                                            className="rounded-lg py-2"
+                                            placeholder="Mật khẩu"
+                                        />
+                                    </Item>
+                                )}
+                            />
                             <Button
                                 className="h-10 w-full rounded-lg text-lg font-semibold transition-all hover:scale-105"
+                                disabled={isLoading}
                                 htmlType="submit"
                                 type="primary"
                             >
-                                Đăng nhập
+                                {isLoading ? <LoadingOutlined spin={true} /> : "Đăng nhập"}
                             </Button>
                         </Form>
                         <Paragraph className="my-4 text-center">HOẶC</Paragraph>
@@ -110,6 +183,7 @@ export default function HomePage() {
                     <Paragraph className="hover:underline">© 2025 LILIT</Paragraph>
                 </Link>
             </Footer>
+            <AlertDisplay />
         </Layout>
     );
 }
