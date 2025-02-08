@@ -17,7 +17,7 @@ export default function HomePage() {
     const currentTheme = theme === "system" ? resolvedTheme : theme;
 
     return (
-        <Layout className="flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm">
+        <Layout className="flex h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm">
             <MatrixBackground />
             <Header className="flex h-20 w-full items-center justify-between bg-transparent px-6 shadow-md">
                 <Link href="/">
@@ -34,7 +34,6 @@ export default function HomePage() {
                         width={56}
                     />
                 </Link>
-
                 <Button
                     className="flex items-center justify-center rounded-full text-lg font-bold transition-all hover:scale-105"
                     size="large"
@@ -43,7 +42,7 @@ export default function HomePage() {
                     Tìm hiểu thêm
                 </Button>
             </Header>
-            <Content className="flex min-h-screen w-full flex-col items-center justify-center gap-12 px-8 py-12 md:flex-row">
+            <Content className="flex h-full w-full flex-col items-center justify-center gap-12 px-8 py-12 md:flex-row">
                 <Flex className="w-full flex-col items-center justify-center md:w-1/2">
                     <Title className="mb-6 text-center text-4xl">Chào mừng bạn đến với LILIT</Title>
                     <Paragraph className="max-w-md text-center text-lg">
@@ -106,7 +105,7 @@ export default function HomePage() {
                 </Flex>
             </Content>
 
-            <Footer className="flex h-fit w-full items-center justify-center bg-transparent">
+            <Footer className="flex h-12 w-full flex-row items-center justify-start bg-transparent text-left">
                 <Link href="https://lilit.io.vn" target="_blank">
                     <Paragraph className="hover:underline">© 2025 LILIT</Paragraph>
                 </Link>

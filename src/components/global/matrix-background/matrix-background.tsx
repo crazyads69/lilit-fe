@@ -24,7 +24,7 @@ function MatrixBackground() {
         window.addEventListener("resize", resizeCanvas);
 
         const characters =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+{}[]|;:,.<>?";
+            "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω∀∂∃∅∇∈∉∋∏∑−∕∗∙√∝∞∠∡∢∴∵∶∷∼∽≀≁≈≉≠≡≢≤≥≪≫⊂⊃⊄⊅⊆⊇⊈⊉⊊⊋⊕⊗⊥⋅⌈⌉⌊⌋〈〉αβγδεζηθικλμνξοπρστυφχψω";
         const columns = canvas.width / 20;
         const drops: number[] = [];
 
