@@ -37,9 +37,17 @@ const authDataSchema = z.object({
     refresh_token: z.string(),
 });
 
+const refreshTokenSchema = z.object({
+    access_token: z.string(),
+    refresh_token: z.string(),
+});
+
 export const loginResponseSchema = apiResponseSchema(authDataSchema);
 export const registerResponseSchema = apiResponseSchema(authDataSchema);
+export const refreshTokenResponseSchema = apiResponseSchema(refreshTokenSchema);
 
-export type User = z.infer<typeof userSchema>;
+export type AuthData = z.infer<typeof userSchema>;
+export type RefreshToken = z.infer<typeof refreshTokenSchema>;
 export type LoginResponse = z.infer<typeof loginResponseSchema>;
 export type RegisterResponse = z.infer<typeof registerResponseSchema>;
+export type RefreshTokenResponse = z.infer<typeof refreshTokenResponseSchema>;

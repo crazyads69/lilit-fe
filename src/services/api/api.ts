@@ -6,14 +6,19 @@ import {
     FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 
+import { logOut, setNewToken } from "@/redux/slice/auth-slice/auth-slice";
 import { RootState } from "@/redux/store/store";
 import { LoginInput, loginInputSchema } from "@/schemas/auth/auth-input/auth-input";
-import { LoginResponse, loginResponseSchema } from "@/schemas/auth/auth-response/auth-response";
+import {
+    LoginResponse,
+    loginResponseSchema,
+    refreshTokenResponseSchema,
+} from "@/schemas/auth/auth-response/auth-response";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL!,
     prepareHeaders: (headers, { getState }) => {
-        const acessToken = (getState() as RootState).auth.token;
+        const acessToken = (getState() as RootState).auth.accessToken;
         const deviceId = (getState() as RootState).auth.deviceId;
 
         if (acessToken) {
@@ -26,7 +31,6 @@ const baseQuery = fetchBaseQuery({
         return headers;
     },
 });
-
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
     args,
     api,
@@ -34,17 +38,42 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
 ) => {
     let result = await baseQuery(args, api, extraOptions);
 
-    if (result.error && result.error.status === 401) {
-        // try to get a new token
-        const refreshResult = await baseQuery("/v1/auth/refresh-token", api, extraOptions);
+    if ((result.error && result.error.status === 401) || result.error?.status === 403) {
+        const refreshToken = (api.getState() as RootState).auth.refreshToken;
+        const deviceId = (api.getState() as RootState).auth.deviceId;
 
-        if (refreshResult.data) {
-            // store the new token
-            // api.dispatch(setCredentials(refreshResult.data));
-            // retry the initial query
-            result = await baseQuery(args, api, extraOptions);
+        if (refreshToken && deviceId) {
+            try {
+                // Make refresh token request with token in header
+                const refreshResult = await baseQuery(
+                    {
+                        url: "/v1/auth/refresh-token",
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${refreshToken}`,
+                            "Device-ID": deviceId,
+                        },
+                    },
+                    api,
+                    extraOptions,
+                );
+
+                if (refreshResult.data) {
+                    const newToken = refreshTokenResponseSchema.parse(refreshResult.data);
+
+                    api.dispatch(setNewToken(newToken.data));
+
+                    // Retry original request with new access token
+                    result = await baseQuery(args, api, extraOptions);
+                } else {
+                    api.dispatch(logOut());
+                }
+            } catch (error) {
+                console.error("Failed to refresh token:", error);
+                api.dispatch(logOut());
+            }
         } else {
-            // api.dispatch(logOut());
+            api.dispatch(logOut());
         }
     }
 
