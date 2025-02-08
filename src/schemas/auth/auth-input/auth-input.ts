@@ -9,8 +9,8 @@ const createPasswordRegex = () => {
 const isValidDateOfBirth = (value: string) => {
     const date = new Date(value);
     const now = new Date();
-    const minAge = 13; // Assuming minimum age is 13, adjust as needed
-    const maxAge = 120; // Assuming maximum age is 120, adjust as needed
+    const minAge = 12;
+    const maxAge = 100;
 
     if (isNaN(date.getTime())) {
         return false; // Invalid date format
@@ -55,7 +55,7 @@ export const registerInputSchema = z.object({
     last_name: z.string().min(1, "Họ là bắt buộc"),
     username: z.string().min(1, "Tên người dùng là bắt buộc"),
     date_of_birth: z.string().refine(isValidDateOfBirth, {
-        message: "Ngày sinh không hợp lệ. Người dùng phải từ 13 đến 120 tuổi.",
+        message: "Ngày sinh không hợp lệ. Người dùng phải từ 12 đến 100 tuổi.",
     }),
     device_id: z.string().min(1, "ID thiết bị là bắt buộc"),
 });

@@ -8,13 +8,21 @@ import {
 
 import { logOut, setNewToken } from "@/redux/slice/auth-slice/auth-slice";
 import { RootState } from "@/redux/store/store";
-import { LoginInput, loginInputSchema } from "@/schemas/auth/auth-input/auth-input";
+import {
+    LoginInput,
+    loginInputSchema,
+    RegisterInput,
+    registerInputSchema,
+} from "@/schemas/auth/auth-input/auth-input";
 import {
     LoginResponse,
     loginResponseSchema,
     refreshTokenResponseSchema,
+    RegisterResponse,
+    registerResponseSchema,
 } from "@/schemas/auth/auth-response/auth-response";
 
+// Create a base query with authentication headers
 const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL!,
     prepareHeaders: (headers, { getState }) => {
@@ -31,6 +39,8 @@ const baseQuery = fetchBaseQuery({
         return headers;
     },
 });
+
+// Create a base query with reauthentication
 const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
     args,
     api,
@@ -80,10 +90,12 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     return result;
 };
 
+// Create an API with authentication
 export const api = createApi({
     baseQuery: baseQueryWithReauth,
     tagTypes: ["Auth"],
     endpoints: (builder) => ({
+        // Login endpoint
         login: builder.mutation<LoginResponse, LoginInput>({
             query: (credentials) => ({
                 url: "/v1/auth/login",
@@ -102,8 +114,36 @@ export const api = createApi({
                 }
             },
             transformResponse: (response) => loginResponseSchema.parse(response),
+            invalidatesTags: ["Auth"],
+        }),
+        // Register endpoint
+        register: builder.mutation<RegisterResponse, RegisterInput>({
+            query: (credentials) => ({
+                url: "/v1/auth/register",
+                method: "POST",
+                body: credentials,
+            }),
+            async onQueryStarted(credentials, { queryFulfilled }) {
+                try {
+                    registerInputSchema.parse(credentials);
+                    await queryFulfilled;
+                } catch (error) {
+                    console.error("Register input validation failed:", error);
+                    throw error;
+                }
+            },
+            transformResponse: (response) => registerResponseSchema.parse(response),
+            invalidatesTags: ["Auth"],
+        }),
+        // Logout endpoint
+        logout: builder.mutation<void, void>({
+            query: () => ({
+                url: "/v1/auth/logout",
+                method: "POST",
+            }),
+            invalidatesTags: ["Auth"],
         }),
     }),
 });
 
-export const { useLoginMutation } = api;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = api;

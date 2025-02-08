@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
 import authReducer, { initializeAuthState } from "@/redux/slice/auth-slice/auth-slice";
+import messageReducer from "@/redux/slice/message-slice/message-slice";
 import { api } from "@/services/api/api";
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
+        message: messageReducer,
         [api.reducerPath]: api.reducer,
     },
     preloadedState: {
