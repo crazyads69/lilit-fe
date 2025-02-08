@@ -42,7 +42,7 @@ export default function HomePage() {
                     Tìm hiểu thêm
                 </Button>
             </Header>
-            <Content className="flex min-h-screen w-full flex-col items-center justify-center gap-12 px-8 py-12 md:h-full md:flex-row">
+            <Content className="flex min-h-screen w-full flex-col items-center justify-center gap-12 px-8 py-12 md:min-h-full md:flex-row">
                 <Flex className="w-full flex-col items-center justify-center md:w-1/2">
                     <Title className="mb-6 text-center text-4xl">Chào mừng bạn đến với LILIT</Title>
                     <Paragraph className="max-w-md text-center text-lg">
