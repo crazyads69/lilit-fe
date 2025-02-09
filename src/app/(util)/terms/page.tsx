@@ -1,5 +1,5 @@
 "use client";
-import { Layout, Typography, Card, FloatButton, Anchor, Collapse } from "antd";
+import { Layout, Typography, Card, FloatButton, Anchor, Collapse, Flex } from "antd";
 import Image from "next/image";
 import React, { ReactNode, useEffect, useState } from "react";
 
@@ -487,11 +487,11 @@ export default function TermsOfServicePage() {
     ];
 
     return (
-        <Layout className="relative min-h-screen bg-opacity-80 backdrop-blur-sm">
+        <Layout className="relative flex min-h-screen w-full flex-col bg-opacity-80 backdrop-blur-sm">
             <div className="absolute inset-0 z-[-1]">
                 <ParticleBackground />
             </div>
-            <Header className="sticky top-0 z-10 flex h-20 items-center justify-between bg-transparent px-6">
+            <Header className="sticky flex h-20 items-center justify-between bg-transparent px-6">
                 <Link href="/">
                     <Image
                         alt="LILIT"
@@ -503,6 +503,7 @@ export default function TermsOfServicePage() {
                     />
                 </Link>
             </Header>
+
             <Content className="px-4 py-8 md:px-8">
                 <Card className="mx-auto max-w-4xl">
                     <Title className="mb-8 text-center" level={1}>
@@ -555,6 +556,28 @@ export default function TermsOfServicePage() {
 
             <Footer className="bg-transparent text-center">
                 <Paragraph>© 2025 LILIT - Nền tảng truyện miễn phí, không quảng cáo</Paragraph>
+                <Flex align="center" gap={16} justify="center">
+                    <Link href="/about">
+                        <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            Về chúng tôi
+                        </Paragraph>
+                    </Link>
+                    <Link href="/terms">
+                        <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            Điều khoản sử dụng
+                        </Paragraph>
+                    </Link>
+                    <Link href="/privacy">
+                        <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            Chính sách bảo mật
+                        </Paragraph>
+                    </Link>
+                    <Link href="/contact">
+                        <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            Liên hệ
+                        </Paragraph>
+                    </Link>
+                </Flex>
             </Footer>
             <BackTop visibilityHeight={0} />
             <AlertDisplay />
