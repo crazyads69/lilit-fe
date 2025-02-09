@@ -3,18 +3,18 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 import authReducer, { initializeAuthState } from "@/redux/slice/auth-slice/auth-slice";
 import messageReducer from "@/redux/slice/message-slice/message-slice";
-import { api } from "@/services/api/api";
+import { baseApi } from "@/services/base-api/base-api";
 
 const store = configureStore({
     reducer: {
         auth: authReducer,
         message: messageReducer,
-        [api.reducerPath]: api.reducer,
+        [baseApi.reducerPath]: baseApi.reducer,
     },
     preloadedState: {
         auth: initializeAuthState(),
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 setupListeners(store.dispatch);

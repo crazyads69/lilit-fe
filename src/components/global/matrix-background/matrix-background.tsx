@@ -1,3 +1,4 @@
+"use client";
 import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 
@@ -10,27 +11,32 @@ function MatrixBackground() {
         const canvas = canvasRef.current;
 
         if (!canvas) return;
-
         const ctx = canvas.getContext("2d");
 
         if (!ctx) return;
 
+        // Fixed size for characters
+        const charSize = 12;
+        const charSpacing = 16;
+
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+
+            // Calculate columns based on fixed character spacing
+            return Math.ceil(canvas.width / charSpacing);
         };
 
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
+        let columns = resizeCanvas();
+        let drops = Array(columns).fill(1);
+
+        window.addEventListener("resize", () => {
+            columns = resizeCanvas();
+            drops = Array(columns).fill(1);
+        });
 
         const characters =
             "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω∀∂∃∅∇∈∉∋∏∑−∕∗∙√∝∞∠∡∢∴∵∶∷∼∽≀≁≈≉≠≡≢≤≥≪≫⊂⊃⊄⊅⊆⊇⊈⊉⊊⊋⊕⊗⊥⋅⌈⌉⌊⌋〈〉αβγδεζηθικλμνξοπρστυφχψω";
-        const columns = canvas.width / 20;
-        const drops: number[] = [];
-
-        for (let i = 0; i < columns; i++) {
-            drops[i] = 1;
-        }
 
         const draw = () => {
             if (currentTheme === "dark") {
@@ -43,14 +49,14 @@ function MatrixBackground() {
                 ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
             }
 
-            ctx.font = "12px monospace";
+            ctx.font = `${charSize}px monospace`;
 
             for (let i = 0; i < drops.length; i++) {
                 const text = characters[Math.floor(Math.random() * characters.length)];
 
-                ctx.fillText(text, i * 20, drops[i] * 20);
+                ctx.fillText(text, i * charSpacing, drops[i] * charSpacing);
 
-                if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                if (drops[i] * charSpacing > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
 

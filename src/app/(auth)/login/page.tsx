@@ -1,10 +1,8 @@
 "use client";
 import { GoogleOutlined, LoadingOutlined } from "@ant-design/icons";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Layout, Typography, Flex, Card, Form, Input } from "antd";
-import "@ant-design/v5-patch-for-react-19";
+import { Button, Typography, Flex, Card, Form, Input, Layout } from "antd";
 import Image from "next/image";
-import { useTheme } from "next-themes";
 import { Controller, useForm } from "react-hook-form";
 
 import { AlertDisplay } from "@/components/global/alert-display/alert-display";
@@ -13,17 +11,14 @@ import { useMessage } from "@/hooks/use-message/use-message";
 import { useAppDispatch } from "@/hooks/use-redux/use-redux";
 import { setCredentials } from "@/redux/slice/auth-slice/auth-slice";
 import { LoginFormData, loginSchema } from "@/schemas/auth/auth-input/auth-input";
-import { useLoginMutation } from "@/services/api/api";
+import { useLoginMutation } from "@/services/auth-api/auth-api";
 import { generateDeviceId } from "@/utils/device-id/device-id";
-
-const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Link } = Typography;
 const { Item } = Form;
 const { Password } = Input;
+const { Header, Content, Footer } = Layout;
 
-export default function HomePage() {
-    const { theme, resolvedTheme } = useTheme();
-    const currentTheme = theme === "system" ? resolvedTheme : theme;
+export default function LoginPage() {
     const [login, { isLoading }] = useLoginMutation();
     const dispatch = useAppDispatch();
     const { showMessage } = useMessage();
@@ -38,9 +33,6 @@ export default function HomePage() {
     async function onSubmit(credentials: LoginFormData) {
         try {
             const deviceId = await generateDeviceId();
-
-            console.log("Device ID:", deviceId);
-            console.log("Credentials:", credentials);
             const result = await login({ ...credentials, device_id: deviceId }).unwrap();
 
             dispatch(
@@ -58,7 +50,7 @@ export default function HomePage() {
                 "Bạn đã đăng nhập thành công vào tài khoản của mình",
             );
         } catch (error) {
-            console.log("Failed to login:", error);
+            console.error("Failed to login:", error);
             showMessage("error", "Đăng nhập thất bại", "Đã xảy ra lỗi khi đăng nhập");
         }
     }
@@ -73,21 +65,10 @@ export default function HomePage() {
                         className="cursor-pointer"
                         draggable={false}
                         height={56}
-                        src={
-                            currentTheme === "dark"
-                                ? "/lilit_logo_dark.svg"
-                                : "/lilit_logo_light.svg"
-                        }
+                        src="/lilit_logo.svg"
                         width={56}
                     />
                 </Link>
-                <Button
-                    className="flex items-center justify-center rounded-full text-lg font-bold transition-all hover:scale-105"
-                    size="large"
-                    type="primary"
-                >
-                    Tìm hiểu thêm
-                </Button>
             </Header>
             <Content className="flex min-h-screen w-full flex-col items-center justify-center gap-12 px-8 py-12 md:min-h-full md:flex-row">
                 <Flex className="w-full flex-col items-center justify-center md:w-1/2">
@@ -177,7 +158,6 @@ export default function HomePage() {
                     </Card>
                 </Flex>
             </Content>
-
             <Footer className="flex h-12 w-full flex-row items-center justify-start bg-transparent text-left">
                 <Link href="https://lilit.io.vn" target="_blank">
                     <Paragraph className="hover:underline">© 2025 LILIT</Paragraph>
