@@ -53,7 +53,6 @@ function ParticleBackground({
             canvas.style.height = `${height}px`;
             ctx.scale(dpr, dpr);
 
-            // Reinitialize particles when canvas is resized
             initParticles();
         };
 
@@ -164,9 +163,14 @@ function ParticleBackground({
             mouseRef.current = { x: 0, y: 0 } as Particle;
         };
 
+        const handleScroll = () => {
+            canvas.style.top = `${window.scrollY}px`;
+        };
+
         // Initialize
         resizeCanvas();
         window.addEventListener("resize", resizeCanvas);
+        window.addEventListener("scroll", handleScroll);
         if (interactive) {
             canvas.addEventListener("mousemove", handleMouseMove);
             canvas.addEventListener("mouseleave", handleMouseLeave);
@@ -176,6 +180,7 @@ function ParticleBackground({
         return () => {
             cancelAnimationFrame(animationId);
             window.removeEventListener("resize", resizeCanvas);
+            window.removeEventListener("scroll", handleScroll);
             if (interactive) {
                 canvas.removeEventListener("mousemove", handleMouseMove);
                 canvas.removeEventListener("mouseleave", handleMouseLeave);
@@ -187,7 +192,7 @@ function ParticleBackground({
         <canvas
             ref={canvasRef}
             aria-hidden="true"
-            className="fixed left-0 top-0 -z-10 h-full w-full"
+            className="fixed left-0 top-0 -z-10 h-screen w-full"
         />
     );
 }

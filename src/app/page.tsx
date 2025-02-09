@@ -13,6 +13,7 @@ import { Layout, Typography, Button, Flex, Card, Collapse } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import "@ant-design/v5-patch-for-react-19";
 
 import { AlertDisplay } from "@/components/global/alert-display/alert-display";
 import ParticleBackground from "@/components/global/matrix-background/particle-background";
@@ -20,7 +21,6 @@ import SchemaOrg from "@/components/global/schema-org/schema-org";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph } = Typography;
-const { Panel } = Collapse;
 
 export default function LandingPage() {
     const features = [
@@ -100,8 +100,10 @@ export default function LandingPage() {
                 title="LILIT - Nền tảng truyện miễn phí, không quảng cáo"
                 url="https://lilit.io.vn"
             />
-            <Layout className="flex min-h-screen w-full flex-col bg-opacity-80 backdrop-blur-sm">
-                <ParticleBackground />
+            <Layout className="relative flex min-h-screen w-full flex-col bg-opacity-80 backdrop-blur-sm">
+                <div className="absolute inset-0 z-[-1]">
+                    <ParticleBackground />
+                </div>
                 <Header className="sticky flex h-20 items-center justify-between bg-transparent px-6">
                     <Link href="/">
                         <Image
@@ -113,9 +115,9 @@ export default function LandingPage() {
                             width={56}
                         />
                     </Link>
-                    <Flex gap={4}>
+                    <Flex gap={8}>
                         <Link href="/login">
-                            <Button type="text">Đăng nhập</Button>
+                            <Button type="default">Đăng nhập</Button>
                         </Link>
                         <Link href="/register">
                             <Button type="primary">Đăng ký</Button>
@@ -132,9 +134,9 @@ export default function LandingPage() {
                         <Paragraph className="mb-8 max-w-2xl text-lg">
                             Khám phá thế giới truyện đa dạng tại LILIT. Đọc truyện online mọi lúc,
                             mọi nơi - hoàn toàn miễn phí và không có quảng cáo. Từ truyện ngắn đến
-                            tiểu thuyết dài kỳ, chúng tôi có tất cả!
+                            tiểu thuyết dài kỳ, LILIT đều có tất cả!
                         </Paragraph>
-                        <Flex gap={4}>
+                        <Flex gap={8}>
                             <Button icon={<EditOutlined />} size="large" type="primary">
                                 Bắt đầu viết
                             </Button>
@@ -173,9 +175,9 @@ export default function LandingPage() {
                             Đa Dạng Thể Loại
                         </Title>
                         <Paragraph className="mb-8 max-w-2xl text-lg">
-                            LILIT cung cấp đa dạng thể loại truyện để bạn khám phá: ngôn tình, kiếm
-                            hiệp, trinh thám, kinh dị, huyền huyễn, lịch sử, và nhiều hơn nữa. Có cả
-                            truyện chữ và truyện tranh để bạn lựa chọn.
+                            LILIT có đa dạng thể loại truyện để bạn khám phá: ngôn tình, kiếm hiệp,
+                            trinh thám, kinh dị, huyền huyễn, lịch sử, và nhiều hơn nữa. Có cả
+                            truyện chữ và truyện tranh để bạn tha hồ lựa chọn.
                         </Paragraph>
                     </Flex>
 
@@ -220,13 +222,7 @@ export default function LandingPage() {
                         <Title className="mb-8 text-center" level={2}>
                             Câu Hỏi Thường Gặp
                         </Title>
-                        <Collapse accordion className="w-full max-w-2xl">
-                            {faqItems.map((item) => (
-                                <Panel key={item.key} header={item.label}>
-                                    {item.children}
-                                </Panel>
-                            ))}
-                        </Collapse>
+                        <Collapse accordion className="w-full max-w-2xl" items={faqItems} />
                     </Flex>
 
                     {/* Call to Action */}
@@ -235,9 +231,9 @@ export default function LandingPage() {
                             Tham Gia LILIT Ngay Hôm Nay!
                         </Title>
                         <Paragraph className="mb-8 max-w-2xl text-lg">
-                            Dù bạn là tác giả đầy tham vọng hay độc giả đam mê, LILIT luôn chào đón
-                            bạn. Hãy cùng chúng tôi xây dựng một cộng đồng truyện phong phú và sôi
-                            động!
+                            Dù bạn là tác giả đầy tham vọng hay độc giả đam mê truyện, LILIT luôn
+                            chào đón bạn. Hãy cùng chúng tôi xây dựng một cộng đồng truyện phong phú
+                            và sôi động!
                         </Paragraph>
                         <Button size="large" type="primary">
                             Đăng Ký Miễn Phí
@@ -247,11 +243,19 @@ export default function LandingPage() {
 
                 <Footer className="bg-transparent text-center">
                     <Paragraph>© 2025 LILIT - Nền tảng truyện miễn phí, không quảng cáo</Paragraph>
-                    <Flex gap={16} justify="center">
-                        <Link href="/about">Về chúng tôi</Link>
-                        <Link href="/terms">Điều khoản sử dụng</Link>
-                        <Link href="/privacy">Chính sách bảo mật</Link>
-                        <Link href="/contact">Liên hệ</Link>
+                    <Flex align="center" gap={16} justify="center">
+                        <Link className="text-black no-underline hover:underline" href="/about">
+                            Về chúng tôi
+                        </Link>
+                        <Link className="text-black no-underline hover:underline" href="/terms">
+                            Điều khoản sử dụng
+                        </Link>
+                        <Link className="text-black no-underline hover:underline" href="/privacy">
+                            Chính sách bảo mật
+                        </Link>
+                        <Link className="text-black no-underline hover:underline" href="/contact">
+                            Liên hệ
+                        </Link>
                     </Flex>
                 </Footer>
                 <AlertDisplay />

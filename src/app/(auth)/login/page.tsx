@@ -3,7 +3,9 @@ import { GoogleOutlined, LoadingOutlined } from "@ant-design/icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Typography, Flex, Card, Form, Input, Layout } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
+import "@ant-design/v5-patch-for-react-19";
 
 import { AlertDisplay } from "@/components/global/alert-display/alert-display";
 import MatrixBackground from "@/components/global/matrix-background/matrix-background";
@@ -13,7 +15,7 @@ import { setCredentials } from "@/redux/slice/auth-slice/auth-slice";
 import { LoginFormData, loginSchema } from "@/schemas/auth/auth-input/auth-input";
 import { useLoginMutation } from "@/services/auth-api/auth-api";
 import { generateDeviceId } from "@/utils/device-id/device-id";
-const { Title, Paragraph, Link } = Typography;
+const { Title, Paragraph } = Typography;
 const { Item } = Form;
 const { Password } = Input;
 const { Header, Content, Footer } = Layout;
@@ -159,8 +161,8 @@ export default function LoginPage() {
                 </Flex>
             </Content>
             <Footer className="flex h-12 w-full flex-row items-center justify-start bg-transparent text-left">
-                <Link href="https://lilit.io.vn" target="_blank">
-                    <Paragraph className="hover:underline">© 2025 LILIT</Paragraph>
+                <Link className="text-black no-underline hover:underline" href="/">
+                    © 2025 LILIT
                 </Link>
             </Footer>
             <AlertDisplay />

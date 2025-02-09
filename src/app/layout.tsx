@@ -3,7 +3,6 @@ import { Fira_Code, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import React from "react";
 
-import "@ant-design/v5-patch-for-react-19";
 import "./globals.css";
 
 import SchemaOrg from "@/components/global/schema-org/schema-org";
