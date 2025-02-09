@@ -63,6 +63,13 @@ export default function manifest(): MetadataRoute.Manifest {
                 url: "/login",
                 icons: [{ src: "/web-app-manifest-192x192.png", sizes: "192x192" }],
             },
+            {
+                name: "Điều khoản sử dụng",
+                short_name: "Terms",
+                description: "Đi đến trang điều khoản sử dụng",
+                url: "/terms",
+                icons: [{ src: "/web-app-manifest-192x192.png", sizes: "192x192" }],
+            },
         ],
         categories: ["books", "entertainment", "lifestyle", "social", "utilities", "productivity"],
         lang: "vi-VN",
