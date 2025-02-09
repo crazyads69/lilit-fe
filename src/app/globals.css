@@ -58,6 +58,7 @@ body {
     color: var(--ant-text-color);
     background-color: var(--ant-body-background);
     font-family: var(--ant-font-family);
+    overscroll-behavior: none;
 }
 
 @layer base {
