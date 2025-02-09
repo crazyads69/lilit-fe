@@ -52,7 +52,7 @@ export default function LoginPage() {
                 "Bạn đã đăng nhập thành công vào tài khoản của mình",
             );
         } catch (error) {
-            console.error("Failed to login:", error);
+            console.log("Failed to login:", error);
             showMessage("error", "Đăng nhập thất bại", "Đã xảy ra lỗi khi đăng nhập");
         }
     }
@@ -163,8 +163,10 @@ export default function LoginPage() {
                 </Flex>
             </Content>
             <Footer className="flex h-12 w-full flex-row items-center justify-start bg-transparent text-left">
-                <Link className="text-black no-underline hover:underline" href="/">
-                    © 2025 LILIT
+                <Link href="/">
+                    <Paragraph className="md:text-md text-center text-xs hover:underline">
+                        © 2025 LILIT
+                    </Paragraph>
                 </Link>
             </Footer>
             <AlertDisplay />

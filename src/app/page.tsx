@@ -244,17 +244,25 @@ export default function LandingPage() {
                 <Footer className="bg-transparent text-center">
                     <Paragraph>© 2025 LILIT - Nền tảng truyện miễn phí, không quảng cáo</Paragraph>
                     <Flex align="center" gap={16} justify="center">
-                        <Link className="text-black no-underline hover:underline" href="/about">
-                            Về chúng tôi
+                        <Link href="/about">
+                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                                Về chúng tôi
+                            </Paragraph>
                         </Link>
-                        <Link className="text-black no-underline hover:underline" href="/terms">
-                            Điều khoản sử dụng
+                        <Link href="/terms">
+                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                                Điều khoản sử dụng
+                            </Paragraph>
                         </Link>
-                        <Link className="text-black no-underline hover:underline" href="/privacy">
-                            Chính sách bảo mật
+                        <Link href="/privacy">
+                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                                Chính sách bảo mật
+                            </Paragraph>
                         </Link>
-                        <Link className="text-black no-underline hover:underline" href="/contact">
-                            Liên hệ
+                        <Link href="/contact">
+                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                                Liên hệ
+                            </Paragraph>
                         </Link>
                     </Flex>
                 </Footer>
