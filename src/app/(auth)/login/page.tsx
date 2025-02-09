@@ -58,8 +58,10 @@ export default function LoginPage() {
     }
 
     return (
-        <Layout className="flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm md:h-full">
-            <MatrixBackground />
+        <Layout className="relative flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm md:h-full">
+            <div className="absolute inset-0 z-[-1]">
+                <MatrixBackground />
+            </div>
             <Header className="flex h-20 w-full items-center justify-between bg-transparent px-6">
                 <Link href="/">
                     <Image
