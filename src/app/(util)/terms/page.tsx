@@ -91,8 +91,8 @@ export default function TermsOfServicePage() {
                         <Link href="mailto:lilit.official@outlook.com">
                             lilit.official@outlook.com
                         </Link>
-                        . Sau khi xóa, mọi dữ liệu liên quan đến tài khoản của bạn sẽ bị xóa vĩnh
-                        viễn và không thể khôi phục.
+                        . Sau khi xóa, mọi dữ liệu liên quan đến tài khoản của bạn sẽ được xử lý
+                        theo chính sách bảo vệ dữ liệu cá nhân của chúng tôi.
                     </Paragraph>
                 </>
             ),
@@ -340,9 +340,7 @@ export default function TermsOfServicePage() {
                             </li>
                             <li>
                                 Trách nhiệm tối đa của chúng tôi đối với bất kỳ khiếu nại nào liên
-                                quan đến dịch vụ sẽ không vượt quá 1.000.000 VND hoặc số tiền bạn đã
-                                trả cho dịch vụ trong 6 tháng trước đó, tùy theo giá trị nào thấp
-                                hơn.
+                                quan đến dịch vụ sẽ không vượt quá 1.000.000 VND.
                             </li>
                         </ul>
                     </Paragraph>
@@ -430,35 +428,45 @@ export default function TermsOfServicePage() {
         },
         {
             key: "13",
-            title: "Điều khoản khác",
+            title: "Bảo vệ dữ liệu cá nhân",
             content: (
                 <>
                     <Paragraph>
-                        <Text strong>13.1. Toàn bộ thỏa thuận:</Text>
-                        <p>
-                            Các Điều khoản này cấu thành toàn bộ thỏa thuận giữa bạn và LILIT liên
-                            quan đến việc sử dụng dịch vụ của chúng tôi.
-                        </p>
-                    </Paragraph>
-                    <Paragraph>
-                        <Text strong>13.2. Tính độc lập của các điều khoản:</Text>
-                        <p>
-                            Nếu bất kỳ điều khoản nào trong các Điều khoản này bị coi là không hợp
-                            lệ hoặc không thể thực thi, các điều khoản còn lại vẫn có hiệu lực đầy
-                            đủ.
-                        </p>
-                    </Paragraph>
-                    <Paragraph>
-                        <Text strong>13.3. Chuyển nhượng:</Text>
+                        <Text strong>13.1. Thu thập dữ liệu:</Text>
                         <ul>
                             <li>
-                                Bạn không được chuyển nhượng hoặc ủy quyền bất kỳ quyền nào của mình
-                                theo các Điều khoản này mà không có sự đồng ý trước bằng văn bản của
-                                LILIT.
+                                LILIT thu thập các thông tin cá nhân sau:
+                                <ul>
+                                    <li>Thông tin cơ bản: họ tên, email, ngày sinh</li>
+                                    <li>
+                                        Thông tin đăng nhập: tên đăng nhập, mật khẩu đã được mã hóa
+                                    </li>
+                                    <li>
+                                        Lịch sử tương tác trên nền tảng: các truyện đã đọc, bình
+                                        luận, đánh giá
+                                    </li>
+                                    <li>
+                                        Thông tin thiết bị truy cập: loại thiết bị, hệ điều hành,
+                                        trình duyệt
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                LILIT có thể chuyển nhượng các quyền và nghĩa vụ của mình theo các
-                                Điều khoản này mà không cần thông báo.
+                                Mọi hoạt động thu thập dữ liệu đều phải được sự đồng ý rõ ràng của
+                                người dùng.
+                            </li>
+                        </ul>
+                    </Paragraph>
+                    <Paragraph>
+                        <Text strong>13.2. Xử lý và bảo vệ dữ liệu:</Text>
+                        <ul>
+                            <li>Tuân thủ Nghị định 53/2022/NĐ-CP về bảo vệ dữ liệu cá nhân</li>
+                            <li>
+                                Áp dụng các biện pháp kỹ thuật và quản lý phù hợp để bảo vệ dữ liệu
+                            </li>
+                            <li>Không chia sẻ dữ liệu với bên thứ ba khi chưa được sự đồng ý</li>
+                            <li>
+                                Thời gian lưu trữ dữ liệu: tối đa 24 tháng kể từ lần tương tác cuối
                             </li>
                         </ul>
                     </Paragraph>
@@ -467,6 +475,101 @@ export default function TermsOfServicePage() {
         },
         {
             key: "14",
+            title: "Quy định về độ tuổi và năng lực hành vi",
+            content: (
+                <Paragraph>
+                    <Text strong>14.1. Độ tuổi và năng lực:</Text>
+                    <ul>
+                        <li>Người dùng phải từ 13 tuổi trở lên theo quy định của Bộ luật Dân sự</li>
+                        <li>
+                            Người dưới 13 tuổi phải có sự đồng ý và giám sát của người giám hộ hợp
+                            pháp
+                        </li>
+                        <li>
+                            Người dùng phải có đầy đủ năng lực hành vi dân sự theo quy định pháp
+                            luật
+                        </li>
+                    </ul>
+                </Paragraph>
+            ),
+        },
+        {
+            key: "15",
+            title: "Quy định về thanh toán và thuế",
+            content: (
+                <>
+                    <Paragraph>
+                        <Text strong>15.1. Phương thức thanh toán:</Text>
+                        <ul>
+                            <li>
+                                Các phương thức được chấp nhận: chuyển khoản ngân hàng, ví điện tử
+                                được cấp phép tại Việt Nam
+                            </li>
+                            <li>
+                                Mọi giao dịch phải tuân thủ quy định về thanh toán không dùng tiền
+                                mặt
+                            </li>
+                        </ul>
+                    </Paragraph>
+                    <Paragraph>
+                        <Text strong>15.2. Nghĩa vụ thuế:</Text>
+                        <ul>
+                            <li>
+                                Tác giả có trách nhiệm kê khai và nộp thuế thu nhập cá nhân từ các
+                                khoản donate theo quy định
+                            </li>
+                            <li>
+                                LILIT sẽ cung cấp báo cáo thu nhập hàng năm cho tác giả để phục vụ
+                                việc kê khai thuế
+                            </li>
+                        </ul>
+                    </Paragraph>
+                </>
+            ),
+        },
+        {
+            key: "16",
+            title: "Nội dung bị cấm",
+            content: (
+                <Paragraph>
+                    Nghiêm cấm các nội dung sau theo quy định pháp luật Việt Nam:
+                    <ul>
+                        <li>Nội dung chống phá Nhà nước, chia rẽ khối đại đoàn kết dân tộc</li>
+                        <li>Nội dung kích động bạo lực, phân biệt đối xử</li>
+                        <li>Nội dung vi phạm thuần phong mỹ tục</li>
+                        <li>Nội dung xâm phạm quyền và lợi ích hợp pháp của tổ chức, cá nhân</li>
+                        <li>Nội dung vi phạm sở hữu trí tuệ</li>
+                    </ul>
+                </Paragraph>
+            ),
+        },
+        {
+            key: "17",
+            title: "Trường hợp bất khả kháng",
+            content: (
+                <>
+                    <Paragraph>
+                        <Text strong>17.1. Định nghĩa bất khả kháng:</Text>
+                        <ul>
+                            <li>Thiên tai, dịch bệnh</li>
+                            <li>Chiến tranh, khủng bố</li>
+                            <li>Quyết định của cơ quan nhà nước có thẩm quyền</li>
+                            <li>Sự cố kỹ thuật ngoài tầm kiểm soát</li>
+                        </ul>
+                    </Paragraph>
+                    <Paragraph>
+                        <Text strong>17.2. Xử lý bất khả kháng:</Text>
+                        <ul>
+                            <li>Thông báo cho đối tác trong vòng 48 giờ</li>
+                            <li>Có nghĩa vụ chứng minh sự kiện bất khả kháng</li>
+                            <li>Tiếp tục thực hiện nghĩa vụ sau khi sự kiện kết thúc</li>
+                        </ul>
+                    </Paragraph>
+                </>
+            ),
+        },
+        {
+            key: "18",
             title: "Liên hệ",
             content: (
                 <Paragraph>
