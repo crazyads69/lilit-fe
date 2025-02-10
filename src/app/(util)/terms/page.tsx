@@ -1,5 +1,5 @@
 "use client";
-import { Layout, Typography, Card, FloatButton, Anchor, Collapse, Flex } from "antd";
+import { Layout, Typography, Card, FloatButton, Anchor, Collapse, Flex, Space, Button } from "antd";
 import Image from "next/image";
 import React, { ReactNode, useEffect, useState } from "react";
 
@@ -605,6 +605,14 @@ export default function TermsOfServicePage() {
                         width={56}
                     />
                 </Link>
+                <Space>
+                    <Link href="/login">
+                        <Button type="default">Đăng nhập</Button>
+                    </Link>
+                    <Link href="/register">
+                        <Button type="primary">Đăng ký</Button>
+                    </Link>
+                </Space>
             </Header>
 
             <Content className="px-4 py-8 md:px-8">
