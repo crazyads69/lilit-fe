@@ -669,24 +669,22 @@ export default function TermsOfServicePage() {
                 <Paragraph>© 2025 LILIT - Nền tảng truyện miễn phí, không quảng cáo</Paragraph>
                 <Flex align="center" gap={16} justify="center">
                     <Link href="/about">
-                        <Paragraph className="md:text-md text-center text-xs hover:underline">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
                             Về chúng tôi
-                        </Paragraph>
+                        </Text>
                     </Link>
                     <Link href="/terms">
-                        <Paragraph className="md:text-md text-center text-xs hover:underline">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
                             Điều khoản sử dụng
-                        </Paragraph>
+                        </Text>
                     </Link>
                     <Link href="/privacy">
-                        <Paragraph className="md:text-md text-center text-xs hover:underline">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
                             Chính sách bảo mật
-                        </Paragraph>
+                        </Text>
                     </Link>
                     <Link href="/contact">
-                        <Paragraph className="md:text-md text-center text-xs hover:underline">
-                            Liên hệ
-                        </Paragraph>
+                        <Text className="text-sm hover:text-blue-600 hover:underline">Liên hệ</Text>
                     </Link>
                 </Flex>
             </Footer>

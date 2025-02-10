@@ -20,7 +20,7 @@ import ParticleBackground from "@/components/global/matrix-background/particle-b
 import SchemaOrg from "@/components/global/schema-org/schema-org";
 
 const { Header, Content, Footer } = Layout;
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 export default function LandingPage() {
     const features = [
@@ -245,24 +245,24 @@ export default function LandingPage() {
                     <Paragraph>© 2025 LILIT - Nền tảng truyện miễn phí, không quảng cáo</Paragraph>
                     <Flex align="center" gap={16} justify="center">
                         <Link href="/about">
-                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Về chúng tôi
-                            </Paragraph>
+                            </Text>
                         </Link>
                         <Link href="/terms">
-                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Điều khoản sử dụng
-                            </Paragraph>
+                            </Text>
                         </Link>
                         <Link href="/privacy">
-                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Chính sách bảo mật
-                            </Paragraph>
+                            </Text>
                         </Link>
                         <Link href="/contact">
-                            <Paragraph className="md:text-md text-center text-xs hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Liên hệ
-                            </Paragraph>
+                            </Text>
                         </Link>
                     </Flex>
                 </Footer>

@@ -137,7 +137,7 @@ export default function AboutUsPage() {
                         <Title className="mb-6 text-4xl font-bold md:text-5xl lg:text-6xl">
                             Về Chúng Tôi - LILIT
                         </Title>
-                        <Paragraph className="mb-8 max-w-3xl text-lg text-gray-600">
+                        <Paragraph className="mb-8 max-w-3xl text-lg">
                             LILIT là nền tảng truyện phi lợi nhuận, miễn phí và không quảng cáo,
                             được tạo ra bởi những lập trình viên đam mê truyện. Chúng tôi cam kết
                             xây dựng một không gian sáng tạo tự do cho cộng đồng yêu truyện.
@@ -203,9 +203,7 @@ export default function AboutUsPage() {
                                     <Title className="mb-4" level={4}>
                                         {feature.title}
                                     </Title>
-                                    <Paragraph className="text-gray-600">
-                                        {feature.description}
-                                    </Paragraph>
+                                    <Paragraph>{feature.description}</Paragraph>
                                 </Card>
                             ))}
                         </Flex>
@@ -315,7 +313,7 @@ export default function AboutUsPage() {
                         <Title className="mb-6 text-3xl font-bold" level={2}>
                             Tham Gia Cùng LILIT
                         </Title>
-                        <Paragraph className="mb-8 max-w-2xl text-lg text-gray-600">
+                        <Paragraph className="mb-8 max-w-2xl text-lg">
                             Dù bạn là độc giả đam mê, tác giả đầy hoài bão, hay nhà phát triển muốn
                             đóng góp, LILIT luôn chào đón bạn. Hãy cùng chúng tôi xây dựng một cộng
                             đồng truyện số sôi động và phong phú!
@@ -481,31 +479,29 @@ export default function AboutUsPage() {
                 </Content>
 
                 <Footer className="bg-transparent text-center">
-                    <Paragraph className="text-gray-600">
-                        © 2025 LILIT - Nền tảng truyện miễn phí, không quảng cáo
-                    </Paragraph>
-                    <Space align="center" className="mb-4" size="large">
+                    <Paragraph>© 2025 LILIT - Nền tảng truyện miễn phí, không quảng cáo</Paragraph>
+                    <Flex align="center" gap={16} justify="center">
                         <Link href="/about">
-                            <Text className="text-sm text-gray-600 hover:text-blue-600 hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Về chúng tôi
                             </Text>
                         </Link>
                         <Link href="/terms">
-                            <Text className="text-sm text-gray-600 hover:text-blue-600 hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Điều khoản sử dụng
                             </Text>
                         </Link>
                         <Link href="/privacy">
-                            <Text className="text-sm text-gray-600 hover:text-blue-600 hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Chính sách bảo mật
                             </Text>
                         </Link>
                         <Link href="/contact">
-                            <Text className="text-sm text-gray-600 hover:text-blue-600 hover:underline">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Liên hệ
                             </Text>
                         </Link>
-                    </Space>
+                    </Flex>
                 </Footer>
                 <AlertDisplay />
             </Layout>
