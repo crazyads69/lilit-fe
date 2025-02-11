@@ -45,12 +45,25 @@ function ParticleBackground({
         let height: number;
 
         const resizeCanvas = () => {
-            width = window.innerWidth;
-            height = window.innerHeight;
+            const container = canvas.parentElement;
+
+            if (!container) return;
+
+            // Get the container's dimensions
+            const rect = container.getBoundingClientRect();
+
+            width = rect.width;
+            height = rect.height;
+
+            // Set canvas dimensions accounting for device pixel ratio
             canvas.width = width * dpr;
             canvas.height = height * dpr;
+
+            // Set display size (css pixels)
             canvas.style.width = `${width}px`;
             canvas.style.height = `${height}px`;
+
+            // Scale the context to ensure correct drawing operations
             ctx.scale(dpr, dpr);
 
             initParticles();
@@ -105,7 +118,6 @@ function ParticleBackground({
         const draw = () => {
             ctx.clearRect(0, 0, width, height);
 
-            // Set colors based on theme
             ctx.fillStyle =
                 currentTheme === "dark" ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.5)";
             ctx.strokeStyle =
@@ -115,11 +127,9 @@ function ParticleBackground({
             const particles = particlesRef.current;
             const mousePos = mouseRef.current;
 
-            // Draw particles and connections
             particles.forEach((particle, i) => {
                 drawParticle(particle);
 
-                // Connect to nearby particles
                 for (let j = i + 1; j < particles.length; j++) {
                     const other = particles[j];
                     const dx = other.x - particle.x;
@@ -131,7 +141,6 @@ function ParticleBackground({
                     }
                 }
 
-                // Connect to mouse if interactive
                 if (interactive && mousePos.x > 0) {
                     const dx = mousePos.x - particle.x;
                     const dy = mousePos.y - particle.y;
@@ -139,7 +148,6 @@ function ParticleBackground({
 
                     if (distance < connectionRadius * 1.5) {
                         drawConnection(particle, mousePos as Particle, distance);
-                        // Add slight attraction to mouse
                         particle.dx += dx * 0.00001;
                         particle.dy += dy * 0.00001;
                     }
@@ -154,8 +162,8 @@ function ParticleBackground({
             const rect = canvas.getBoundingClientRect();
 
             mouseRef.current = {
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
+                x: (e.clientX - rect.left) * dpr,
+                y: (e.clientY - rect.top) * dpr,
             } as Particle;
         };
 
@@ -163,14 +171,17 @@ function ParticleBackground({
             mouseRef.current = { x: 0, y: 0 } as Particle;
         };
 
-        const handleScroll = () => {
-            canvas.style.top = `${window.scrollY}px`;
-        };
-
         // Initialize
         resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
-        window.addEventListener("scroll", handleScroll);
+
+        // Handle resize
+        const handleResize = () => {
+            // Reset the scale transform
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            resizeCanvas();
+        };
+
+        window.addEventListener("resize", handleResize);
         if (interactive) {
             canvas.addEventListener("mousemove", handleMouseMove);
             canvas.addEventListener("mouseleave", handleMouseLeave);
@@ -179,8 +190,7 @@ function ParticleBackground({
 
         return () => {
             cancelAnimationFrame(animationId);
-            window.removeEventListener("resize", resizeCanvas);
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
             if (interactive) {
                 canvas.removeEventListener("mousemove", handleMouseMove);
                 canvas.removeEventListener("mouseleave", handleMouseLeave);
@@ -189,11 +199,9 @@ function ParticleBackground({
     }, [currentTheme, particleCount, particleSize, particleSpeed, connectionRadius, interactive]);
 
     return (
-        <canvas
-            ref={canvasRef}
-            aria-hidden="true"
-            className="fixed left-0 top-0 -z-10 h-screen w-full"
-        />
+        <div className="fixed inset-0 -z-10 h-screen w-full overflow-hidden">
+            <canvas ref={canvasRef} aria-hidden="true" className="h-full w-full" />
+        </div>
     );
 }
 

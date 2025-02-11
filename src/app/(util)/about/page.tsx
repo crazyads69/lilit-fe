@@ -106,10 +106,8 @@ export default function AboutUsPage() {
                 title="Về Chúng Tôi - LILIT: Nền Tảng Truyện Miễn Phí, Không Quảng Cáo"
                 url="https://lilit.io.vn/about"
             />
-            <Layout className="relative flex min-h-screen w-full flex-col bg-opacity-80 backdrop-blur-sm">
-                <div className="absolute inset-0 z-[-1]">
-                    <ParticleBackground />
-                </div>
+            <Layout className="min-h-screen w-full flex-col bg-opacity-80 backdrop-blur-sm">
+                <ParticleBackground />
                 <Header className="sticky flex h-20 items-center justify-between bg-transparent px-6">
                     <Link href="/">
                         <Image

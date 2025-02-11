@@ -72,7 +72,11 @@ function MatrixBackground() {
         };
     }, [currentTheme]);
 
-    return <canvas ref={canvasRef} className="fixed left-0 top-0 -z-10 h-full w-full" />;
+    return (
+        <div className="fixed inset-0 -z-10 h-screen w-full overflow-hidden">
+            <canvas ref={canvasRef} aria-hidden="true" className="h-full w-full" />
+        </div>
+    );
 }
 
 export default MatrixBackground;
