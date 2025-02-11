@@ -18,8 +18,8 @@ interface ParticleBackgroundProps {
 }
 
 function ParticleBackground({
-    particleCount = 50,
-    particleSize = 2,
+    particleCount = 100,
+    particleSize = 5,
     particleSpeed = 0.5,
     connectionRadius = 150,
     interactive = true,
@@ -199,7 +199,7 @@ function ParticleBackground({
     }, [currentTheme, particleCount, particleSize, particleSpeed, connectionRadius, interactive]);
 
     return (
-        <div className="fixed inset-0 -z-10 h-screen w-full overflow-hidden">
+        <div className="fixed inset-0 -z-10 min-h-screen w-full overflow-hidden">
             <canvas ref={canvasRef} aria-hidden="true" className="h-full w-full" />
         </div>
     );

@@ -9,9 +9,10 @@ import {
     TeamOutlined,
     TrophyOutlined,
 } from "@ant-design/icons";
-import { Layout, Typography, Button, Flex, Card, Collapse } from "antd";
+import { Layout, Typography, Button, Flex, Card, Collapse, Space } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import "@ant-design/v5-patch-for-react-19";
 
@@ -23,6 +24,8 @@ const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
 
 export default function LandingPage() {
+    const router = useRouter();
+
     const features = [
         {
             icon: <SafetyCertificateOutlined className="text-4xl text-blue-600" />,
@@ -113,14 +116,24 @@ export default function LandingPage() {
                             width={56}
                         />
                     </Link>
-                    <Flex gap={8}>
-                        <Link href="/login">
-                            <Button type="default">Đăng nhập</Button>
-                        </Link>
-                        <Link href="/register">
-                            <Button type="primary">Đăng ký</Button>
-                        </Link>
-                    </Flex>
+                    <Space>
+                        <Button
+                            type="default"
+                            onClick={() => {
+                                router.push("/login");
+                            }}
+                        >
+                            Đăng nhập
+                        </Button>
+                        <Button
+                            type="primary"
+                            onClick={() => {
+                                router.push("/register");
+                            }}
+                        >
+                            Đăng ký
+                        </Button>
+                    </Space>
                 </Header>
 
                 <Content className="px-4 py-8 md:px-8">
@@ -244,7 +257,7 @@ export default function LandingPage() {
                     <Flex align="center" gap={16} justify="center">
                         <Link href="/about">
                             <Text className="text-sm hover:text-blue-600 hover:underline">
-                                Về chúng tôi
+                                Về LILIT
                             </Text>
                         </Link>
                         <Link href="/terms">
@@ -255,11 +268,6 @@ export default function LandingPage() {
                         <Link href="/privacy">
                             <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Chính sách bảo mật
-                            </Text>
-                        </Link>
-                        <Link href="/contact">
-                            <Text className="text-sm hover:text-blue-600 hover:underline">
-                                Liên hệ
                             </Text>
                         </Link>
                     </Flex>

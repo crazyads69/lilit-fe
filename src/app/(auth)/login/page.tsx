@@ -8,14 +8,15 @@ import { Controller, useForm } from "react-hook-form";
 import "@ant-design/v5-patch-for-react-19";
 
 import { AlertDisplay } from "@/components/global/alert-display/alert-display";
-import MatrixBackground from "@/components/global/matrix-background/matrix-background";
+import ParticleBackground from "@/components/global/matrix-background/particle-background";
 import { useMessage } from "@/hooks/use-message/use-message";
 import { useAppDispatch } from "@/hooks/use-redux/use-redux";
 import { setCredentials } from "@/redux/slice/auth-slice/auth-slice";
 import { LoginFormData, loginSchema } from "@/schemas/auth/auth-input/auth-input";
 import { useLoginMutation } from "@/services/auth-api/auth-api";
 import { generateDeviceId } from "@/utils/device-id/device-id";
-const { Title, Paragraph } = Typography;
+
+const { Title, Paragraph, Text } = Typography;
 const { Item } = Form;
 const { Password } = Input;
 const { Header, Content, Footer } = Layout;
@@ -59,7 +60,7 @@ export default function LoginPage() {
 
     return (
         <Layout className="relative flex min-h-screen w-full flex-col items-center justify-start bg-opacity-80 backdrop-blur-sm md:h-full">
-            <MatrixBackground />
+            <ParticleBackground />
             <Header className="flex h-20 w-full items-center justify-between bg-transparent px-6">
                 <Link href="/">
                     <Image
@@ -161,11 +162,28 @@ export default function LoginPage() {
                 </Flex>
             </Content>
             <Footer className="flex h-12 w-full flex-row items-center justify-start bg-transparent text-left">
-                <Link href="/">
-                    <Paragraph className="md:text-md text-center text-xs hover:underline">
-                        © 2025 LILIT
-                    </Paragraph>
-                </Link>
+                <Flex gap={16}>
+                    <Link href="/">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
+                            © 2025 LILIT
+                        </Text>
+                    </Link>
+                    <Link href="/about">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
+                            Về LILIT
+                        </Text>
+                    </Link>
+                    <Link href="/terms">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
+                            Điều khoản sử dụng
+                        </Text>
+                    </Link>
+                    <Link href="/privacy">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
+                            Chính sách bảo mật
+                        </Text>
+                    </Link>
+                </Flex>
             </Footer>
             <AlertDisplay />
         </Layout>

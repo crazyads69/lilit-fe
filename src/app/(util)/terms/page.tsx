@@ -1,6 +1,7 @@
 "use client";
 import { Layout, Typography, Card, FloatButton, Anchor, Collapse, Flex, Space, Button } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { ReactNode, useEffect, useState } from "react";
 
 import "@ant-design/v5-patch-for-react-19";
@@ -12,6 +13,7 @@ const { Title, Paragraph, Text, Link } = Typography;
 const { BackTop } = FloatButton;
 
 export default function TermsOfServicePage() {
+    const router = useRouter();
     const [activeKey, setActiveKey] = useState(["1"]);
     const handleAnchorClick = (
         e: React.MouseEvent<HTMLElement>,
@@ -604,12 +606,22 @@ export default function TermsOfServicePage() {
                     />
                 </Link>
                 <Space>
-                    <Link href="/login">
-                        <Button type="default">Đăng nhập</Button>
-                    </Link>
-                    <Link href="/register">
-                        <Button type="primary">Đăng ký</Button>
-                    </Link>
+                    <Button
+                        type="default"
+                        onClick={() => {
+                            router.push("/login");
+                        }}
+                    >
+                        Đăng nhập
+                    </Button>
+                    <Button
+                        type="primary"
+                        onClick={() => {
+                            router.push("/register");
+                        }}
+                    >
+                        Đăng ký
+                    </Button>
                 </Space>
             </Header>
 

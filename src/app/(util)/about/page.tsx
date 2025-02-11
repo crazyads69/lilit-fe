@@ -13,6 +13,7 @@ import {
 import { Layout, Typography, Button, Flex, Card, List, Timeline, Divider, Space } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import "@ant-design/v5-patch-for-react-19";
 
@@ -24,6 +25,7 @@ const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
 
 export default function AboutUsPage() {
+    const router = useRouter();
     const features = [
         {
             icon: <SafetyCertificateOutlined className="text-4xl text-blue-600" />,
@@ -106,7 +108,7 @@ export default function AboutUsPage() {
                 title="Về Chúng Tôi - LILIT: Nền Tảng Truyện Miễn Phí, Không Quảng Cáo"
                 url="https://lilit.io.vn/about"
             />
-            <Layout className="min-h-screen w-full flex-col bg-opacity-80 backdrop-blur-sm">
+            <Layout className="relative min-h-screen w-full flex-col bg-opacity-80 backdrop-blur-sm">
                 <ParticleBackground />
                 <Header className="sticky flex h-20 items-center justify-between bg-transparent px-6">
                     <Link href="/">
@@ -120,12 +122,22 @@ export default function AboutUsPage() {
                         />
                     </Link>
                     <Space>
-                        <Link href="/login">
-                            <Button type="default">Đăng nhập</Button>
-                        </Link>
-                        <Link href="/register">
-                            <Button type="primary">Đăng ký</Button>
-                        </Link>
+                        <Button
+                            type="default"
+                            onClick={() => {
+                                router.push("/login");
+                            }}
+                        >
+                            Đăng nhập
+                        </Button>
+                        <Button
+                            type="primary"
+                            onClick={() => {
+                                router.push("/register");
+                            }}
+                        >
+                            Đăng ký
+                        </Button>
                     </Space>
                 </Header>
 
@@ -481,7 +493,7 @@ export default function AboutUsPage() {
                     <Flex align="center" gap={16} justify="center">
                         <Link href="/about">
                             <Text className="text-sm hover:text-blue-600 hover:underline">
-                                Về chúng tôi
+                                Về LILIT
                             </Text>
                         </Link>
                         <Link href="/terms">
@@ -492,11 +504,6 @@ export default function AboutUsPage() {
                         <Link href="/privacy">
                             <Text className="text-sm hover:text-blue-600 hover:underline">
                                 Chính sách bảo mật
-                            </Text>
-                        </Link>
-                        <Link href="/contact">
-                            <Text className="text-sm hover:text-blue-600 hover:underline">
-                                Liên hệ
                             </Text>
                         </Link>
                     </Flex>
