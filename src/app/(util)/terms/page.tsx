@@ -219,7 +219,7 @@ export default function TermsOfServicePage() {
             title: "Quy tắc ứng xử",
             content: (
                 <Paragraph>
-                    Khi sử dụng LILIT, bạn đồng ý không:
+                    <Text strong>Khi sử dụng LILIT, bạn đồng ý không:</Text>
                     <ul>
                         <li>
                             Đăng tải nội dung bất hợp pháp, khiêu dâm, đe dọa, phỉ báng, quấy rối
@@ -354,9 +354,11 @@ export default function TermsOfServicePage() {
             title: "Bồi thường",
             content: (
                 <Paragraph>
-                    Bạn đồng ý bồi thường, bảo vệ và giữ cho LILIT và các cộng sự của chúng tôi
-                    không bị tổn hại từ bất kỳ khiếu nại, tổn thất, trách nhiệm, chi phí và phí tổn
-                    nào (bao gồm cả phí luật sư) phát sinh từ:
+                    <Text strong>
+                        Bạn đồng ý bồi thường, bảo vệ và giữ cho LILIT và các cộng sự của chúng tôi
+                        không bị tổn hại từ bất kỳ khiếu nại, tổn thất, trách nhiệm, chi phí và phí
+                        tổn nào (bao gồm cả phí luật sư) phát sinh từ:
+                    </Text>
                     <ul>
                         <li>Việc bạn sử dụng dịch vụ của chúng tôi.</li>
                         <li>Việc bạn vi phạm các Điều khoản này.</li>
@@ -534,7 +536,9 @@ export default function TermsOfServicePage() {
             title: "Nội dung bị cấm",
             content: (
                 <Paragraph>
-                    Nghiêm cấm các nội dung sau theo quy định pháp luật Việt Nam:
+                    <Text strong>
+                        Nghiêm cấm các nội dung sau theo quy định pháp luật Việt Nam:
+                    </Text>
                     <ul>
                         <li>Nội dung chống phá Nhà nước, chia rẽ khối đại đoàn kết dân tộc</li>
                         <li>Nội dung kích động bạo lực, phân biệt đối xử</li>
@@ -575,8 +579,10 @@ export default function TermsOfServicePage() {
             title: "Liên hệ",
             content: (
                 <Paragraph>
-                    Nếu bạn có bất kỳ câu hỏi nào về Điều khoản sử dụng này, vui lòng liên hệ chúng
-                    tôi qua:
+                    <Text strong>
+                        Nếu bạn có bất kỳ câu hỏi nào về Điều khoản sử dụng này, vui lòng liên hệ
+                        chúng tôi qua:
+                    </Text>
                     <ul>
                         <li>
                             Email:{" "}
