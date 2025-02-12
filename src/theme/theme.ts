@@ -49,7 +49,7 @@ const lightTheme: ThemeConfig = {
         borderRadius: 8,
         borderRadiusLG: 16,
         borderRadiusSM: 4,
-        colorBorder: "#d9d9d9",
+        colorBorder: "#6b7280",
         colorSplit: "#f0f0f0",
 
         // Font sizes
@@ -151,7 +151,13 @@ const lightTheme: ThemeConfig = {
             activeBorderColor: "#4497f7",
             hoverBorderColor: "#60a6f8",
             addonBg: "#fafafa",
+            colorBgContainer: "#fff",
             borderRadius: 8,
+        },
+        DatePicker: {
+            borderRadius: 8,
+            colorBgContainer: "#fff",
+            colorBorder: "#6b7280",
         },
         Select: {
             controlHeight: 36,
@@ -369,6 +375,12 @@ const darkTheme: ThemeConfig = {
             colorText: "rgba(255, 255, 255, 0.85)",
             algorithm: true,
             primaryShadow: "none",
+        },
+        DatePicker: {
+            ...lightTheme.components?.DatePicker,
+            colorBgContainer: "#1f1f1f",
+            colorBorder: "#424242",
+            algorithm: true,
         },
         Alert: {
             ...lightTheme.components?.Alert,

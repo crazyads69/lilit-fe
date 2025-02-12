@@ -34,6 +34,7 @@ import { generateDeviceId } from "@/utils/device-id/device-id";
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
 const { Item } = Form;
+const { Password } = Input;
 
 export default function RegisterPage() {
     const [register, { isLoading }] = useRegisterMutation();
@@ -207,7 +208,7 @@ export default function RegisterPage() {
                                             label="Xác nhận mật khẩu"
                                             validateStatus={errors.re_password ? "error" : ""}
                                         >
-                                            <Input.Password
+                                            <Password
                                                 {...field}
                                                 className="rounded-lg py-2"
                                                 placeholder="Nhập lại mật khẩu"
