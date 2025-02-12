@@ -506,6 +506,11 @@ export default function AboutUsPage() {
                                 Chính sách bảo mật
                             </Text>
                         </Link>
+                        <Link href="/payment">
+                            <Text className="text-sm hover:text-blue-600 hover:underline">
+                                Chính sách thanh toán
+                            </Text>
+                        </Link>
                     </Flex>
                 </Footer>
                 <AlertDisplay />

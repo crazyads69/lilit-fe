@@ -161,13 +161,13 @@ export default function LoginPage() {
                     </Card>
                 </Flex>
             </Content>
-            <Footer className="flex h-12 w-full flex-row items-center justify-start bg-transparent text-left">
-                <Flex gap={16}>
-                    <Link href="/">
-                        <Text className="text-sm hover:text-blue-600 hover:underline">
-                            © 2025 LILIT
-                        </Text>
-                    </Link>
+            <Footer className="flex w-full flex-col items-center justify-start bg-transparent text-left md:flex-row md:gap-4">
+                <Link href="/">
+                    <Text className="text-sm hover:text-blue-600 hover:underline">
+                        © 2025 LILIT
+                    </Text>
+                </Link>
+                <Flex align="center" className="mt-4 md:mt-0" gap={16}>
                     <Link href="/about">
                         <Text className="text-sm hover:text-blue-600 hover:underline">
                             Về LILIT
@@ -181,6 +181,11 @@ export default function LoginPage() {
                     <Link href="/privacy">
                         <Text className="text-sm hover:text-blue-600 hover:underline">
                             Chính sách bảo mật
+                        </Text>
+                    </Link>
+                    <Link href="/payment">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
+                            Chính sách thanh toán
                         </Text>
                     </Link>
                 </Flex>

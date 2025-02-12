@@ -680,7 +680,7 @@ export default function TermsOfServicePage() {
                 <Flex align="center" gap={16} justify="center">
                     <Link href="/about">
                         <Text className="text-sm hover:text-blue-600 hover:underline">
-                            Về chúng tôi
+                            Về LILIT
                         </Text>
                     </Link>
                     <Link href="/terms">
@@ -693,8 +693,10 @@ export default function TermsOfServicePage() {
                             Chính sách bảo mật
                         </Text>
                     </Link>
-                    <Link href="/contact">
-                        <Text className="text-sm hover:text-blue-600 hover:underline">Liên hệ</Text>
+                    <Link href="/payment">
+                        <Text className="text-sm hover:text-blue-600 hover:underline">
+                            Chính sách thanh toán
+                        </Text>
                     </Link>
                 </Flex>
             </Footer>
