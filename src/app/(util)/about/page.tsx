@@ -317,13 +317,13 @@ export default function AboutUsPage() {
                     </Paragraph>
                     <Space className="w-full flex-col justify-center md:flex-row" size="large">
                         <Button icon={<ReadOutlined />} size="large" type="primary">
-                            Khám Phá Truyện
+                            Khám phá truyện
                         </Button>
                         <Button icon={<EditOutlined />} size="large">
-                            Bắt Đầu Viết
+                            Bắt đầu viết
                         </Button>
                         <Button icon={<HeartOutlined />} size="large">
-                            Ủng Hộ LILIT
+                            Ủng hộ LILIT
                         </Button>
                     </Space>
                 </Flex>

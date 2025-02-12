@@ -247,7 +247,7 @@ export default function LandingPage() {
                             và sôi động!
                         </Paragraph>
                         <Button size="large" type="primary">
-                            Đăng Ký Miễn Phí
+                            Đăng ký miễn phí
                         </Button>
                     </Flex>
                 </Content>

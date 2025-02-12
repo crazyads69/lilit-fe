@@ -52,6 +52,7 @@ export default function LoginPage() {
                 "Đăng nhập thành công",
                 "Bạn đã đăng nhập thành công vào tài khoản của mình",
             );
+            // TODO: Redirect to home page
         } catch (error) {
             console.log("Failed to login:", error);
             showMessage("error", "Đăng nhập thất bại", "Đã xảy ra lỗi khi đăng nhập");
