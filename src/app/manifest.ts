@@ -84,6 +84,13 @@ export default function manifest(): MetadataRoute.Manifest {
                 url: "/privacy",
                 icons: [{ src: "/web-app-manifest-192x192.png", sizes: "192x192" }],
             },
+            {
+                name: "Chính sách thanh toán",
+                short_name: "Payment",
+                description: "Đi đến trang chính sách thanh toán",
+                url: "/payment",
+                icons: [{ src: "/web-app-manifest-192x192.png", sizes: "192x192" }],
+            },
         ],
         categories: ["books", "entertainment", "lifestyle", "social", "utilities", "productivity"],
         lang: "vi-VN",
