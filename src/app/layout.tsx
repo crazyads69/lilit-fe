@@ -6,6 +6,7 @@ import React from "react";
 import "./globals.css";
 
 import SchemaOrg from "@/components/global/schema-org/schema-org";
+import AuthProvider from "@/redux/auth-provider/auth-provider";
 import ReduxProvider from "@/redux/provider/provider";
 import AntdThemeProvider from "@/theme/antd-theme-provider/antd-theme-provider";
 
@@ -129,7 +130,9 @@ export default function RootLayout({
             <body className={`${inter.variable} ${firaCode.variable} antialiased`}>
                 <ReduxProvider>
                     <ThemeProvider enableSystem attribute="class" defaultTheme="system">
-                        <AntdThemeProvider>{children}</AntdThemeProvider>
+                        <AntdThemeProvider>
+                            <AuthProvider>{children}</AuthProvider>
+                        </AntdThemeProvider>
                     </ThemeProvider>
                 </ReduxProvider>
             </body>

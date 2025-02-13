@@ -120,6 +120,10 @@ const nextConfig: NextConfig = {
                     key: "Content-Security-Policy",
                     value: "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
                 },
+                {
+                    key: "Content-Security-Policy",
+                    value: "default-src 'self'; connect-src 'self' http://localhost:8000; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
+                },
             ],
         },
     ],

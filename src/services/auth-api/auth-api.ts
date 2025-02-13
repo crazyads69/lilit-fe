@@ -20,6 +20,7 @@ export const authApi = baseApi.injectEndpoints({
             query: (credentials) => {
                 // Validate input before making the request
                 loginInputSchema.parse(credentials);
+                console.log(credentials);
 
                 return {
                     url: "/v1/auth/login",
