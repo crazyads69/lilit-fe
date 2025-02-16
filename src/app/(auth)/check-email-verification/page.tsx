@@ -48,7 +48,7 @@ export default function CheckEmailVerificationPage() {
                 if (currentUser) {
                     dispatch(setCurrentUser({ ...currentUser, is_verified: true }));
                 }
-                router.push("/home");
+                router.replace("/home");
                 clearInterval(verificationInterval);
             } catch (error) {
                 console.log("Checking email verification:", error);
