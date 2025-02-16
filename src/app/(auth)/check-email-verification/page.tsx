@@ -7,13 +7,14 @@ import "@ant-design/v5-patch-for-react-19";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useEffect, useState } from "react";
 
 import { AlertDisplay } from "@/components/global/alert-display/alert-display";
 import ParticleBackground from "@/components/global/matrix-background/particle-background";
 import { useMessage } from "@/hooks/use-message/use-message";
-import { useAppDispatch } from "@/hooks/use-redux/use-redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/use-redux/use-redux";
 import { logOut } from "@/redux/slice/auth-slice/auth-slice";
+import { setCurrentUser } from "@/redux/slice/user-slice/user-slice";
 import {
     useLogoutMutation,
     useCheckEmailVerificationMutation,
@@ -30,6 +31,8 @@ export default function CheckEmailVerificationPage() {
     const dispatch = useAppDispatch();
     const [logout] = useLogoutMutation();
 
+    const { currentUser } = useAppSelector((state) => state.user);
+
     const [checkEmailVerification] = useCheckEmailVerificationMutation();
     const [resendEmailVerification, { isLoading: isResendingEmailVerification }] =
         useResendEmailVerificationMutation();
@@ -39,20 +42,21 @@ export default function CheckEmailVerificationPage() {
     useEffect(() => {
         const verificationInterval = setInterval(async () => {
             try {
-                const response = await checkEmailVerification().unwrap();
+                await checkEmailVerification().unwrap();
 
-                if (response.status_code === 200) {
-                    showMessage("success", "Xác thực thành công", "Email của bạn đã được xác thực");
-                    router.push("/home");
-                    clearInterval(verificationInterval);
+                showMessage("success", "Xác thực thành công", "Email của bạn đã được xác thực");
+                if (currentUser) {
+                    dispatch(setCurrentUser({ ...currentUser, is_verified: true }));
                 }
+                router.push("/home");
+                clearInterval(verificationInterval);
             } catch (error) {
                 console.log("Checking email verification:", error);
             }
         }, 10000);
 
         return () => clearInterval(verificationInterval);
-    }, [checkEmailVerification, router, showMessage]);
+    }, [checkEmailVerification, router, showMessage, currentUser, dispatch]);
 
     useEffect(() => {
         if (countdown > 0) {

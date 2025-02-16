@@ -42,11 +42,15 @@ const refreshTokenSchema = z.object({
     refresh_token: z.string(),
 });
 
+const checkEmailVerificationSchema = z.object({
+    user: userSchema,
+});
+
 export const loginResponseSchema = apiResponseSchema(authDataSchema);
 export const registerResponseSchema = apiResponseSchema(authDataSchema);
 export const refreshTokenResponseSchema = apiResponseSchema(refreshTokenSchema);
 export const logoutResponseSchema = apiResponseSchema(z.object({}));
-export const checkEmailVerificationResponseSchema = apiResponseSchema(z.object({}));
+export const checkEmailVerificationResponseSchema = apiResponseSchema(checkEmailVerificationSchema);
 export const resendEmailVerificationResponseSchema = apiResponseSchema(z.object({}));
 
 export type AuthData = z.infer<typeof userSchema>;
