@@ -7,7 +7,7 @@ import "@ant-design/v5-patch-for-react-19";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { AlertDisplay } from "@/components/global/alert-display/alert-display";
 import ParticleBackground from "@/components/global/matrix-background/particle-background";
