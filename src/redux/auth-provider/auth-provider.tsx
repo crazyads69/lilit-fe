@@ -15,7 +15,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const dispatch = useAppDispatch();
     const { accessToken, refreshToken } = useAppSelector((state) => state.auth);
     const [isLoading, setIsLoading] = useState(true);
-    const [shouldRender, setShouldRender] = useState(false);
 
     const {
         data: user,
@@ -27,43 +26,47 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
     useEffect(() => {
         const handleAuth = async () => {
+            // If public route, allow access
             if (isPublicRoute(pathname)) {
                 setIsLoading(false);
-                setShouldRender(true);
 
                 return;
             }
 
+            // Handle unauthenticated cases
             if (!accessToken && !refreshToken) {
-                await router.replace("/login");
-                setIsLoading(false);
-                setShouldRender(true);
+                if (isAuthRoute(pathname)) {
+                    setIsLoading(false);
+                } else {
+                    await router.replace("/login");
+                }
 
                 return;
             }
 
+            // Handle authenticated cases
             if (!isUserLoading) {
-                if (user) {
+                if (user && !error) {
                     dispatch(setCurrentUser(user));
-                    if (isAuthRoute(pathname)) {
+                    if (!user.is_verified && pathname !== "/check-email-verification") {
+                        await router.replace("/check-email-verification");
+                    } else if (isAuthRoute(pathname) && user.is_verified) {
                         await router.replace("/home");
                     } else {
-                        setShouldRender(true);
+                        setIsLoading(false);
                     }
                 } else if (error) {
-                    // If there's an error, it means the refresh token logic in baseQueryWithReauth has failed
                     dispatch(clearUser());
                     dispatch(logOut());
                     await router.replace("/login");
                 }
-                setIsLoading(false);
             }
         };
 
         handleAuth();
     }, [accessToken, refreshToken, user, error, isUserLoading, dispatch, router, pathname]);
 
-    if (isLoading || !shouldRender) {
+    if (isLoading || isUserLoading) {
         return <FullLoading />;
     }
 
