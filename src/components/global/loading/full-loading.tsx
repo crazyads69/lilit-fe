@@ -1,4 +1,5 @@
 "use client";
+import { LoadingOutlined } from "@ant-design/icons";
 import { Layout, Typography, Spin } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,8 +7,6 @@ import React from "react";
 import "@ant-design/v5-patch-for-react-19";
 
 import ParticleBackground from "@/components/global/matrix-background/particle-background";
-
-import { LoadingOutlined } from "@ant-design/icons";
 
 const { Header, Content, Footer } = Layout;
 const { Text } = Typography;

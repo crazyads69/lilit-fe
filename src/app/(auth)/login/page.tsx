@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Typography, Flex, Card, Form, Input, Layout } from "antd";
 import Image from "next/image";
 import Link from "next/link";
+import router from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import "@ant-design/v5-patch-for-react-19";
 
@@ -52,9 +53,14 @@ export default function LoginPage() {
                 "Đăng nhập thành công",
                 "Bạn đã đăng nhập thành công vào tài khoản của mình",
             );
-            // TODO: Redirect to home page
-        } catch (error) {
+            router.push("/home");
+        } catch (error: any) {
             console.log("Failed to login:", error);
+            if (error?.data?.message_vi) {
+                showMessage("error", "Đăng nhập thất bại", error.data.message_vi);
+
+                return;
+            }
             showMessage("error", "Đăng nhập thất bại", "Đã xảy ra lỗi khi đăng nhập");
         }
     }

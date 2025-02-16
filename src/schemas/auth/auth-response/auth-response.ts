@@ -45,9 +45,15 @@ const refreshTokenSchema = z.object({
 export const loginResponseSchema = apiResponseSchema(authDataSchema);
 export const registerResponseSchema = apiResponseSchema(authDataSchema);
 export const refreshTokenResponseSchema = apiResponseSchema(refreshTokenSchema);
+export const logoutResponseSchema = apiResponseSchema(z.object({}));
+export const checkEmailVerificationResponseSchema = apiResponseSchema(z.object({}));
+export const resendEmailVerificationResponseSchema = apiResponseSchema(z.object({}));
 
 export type AuthData = z.infer<typeof userSchema>;
 export type RefreshToken = z.infer<typeof refreshTokenSchema>;
 export type LoginResponse = z.infer<typeof loginResponseSchema>;
 export type RegisterResponse = z.infer<typeof registerResponseSchema>;
+export type LogoutResponse = z.infer<typeof logoutResponseSchema>;
+export type CheckEmailVerificationResponse = z.infer<typeof checkEmailVerificationResponseSchema>;
+export type ResendEmailVerificationResponse = z.infer<typeof resendEmailVerificationResponseSchema>;
 export type RefreshTokenResponse = z.infer<typeof refreshTokenResponseSchema>;

@@ -1,4 +1,7 @@
+// utils/constant/constant.ts
+
 export const authRoutes = ["/login", "/register", "/forgot-password", "/reset-password"];
+
 export const publicRoutes = [
     "/terms",
     "/privacy",
@@ -9,11 +12,8 @@ export const publicRoutes = [
     "/reading-lists",
     "/", // Public landing page
 ];
+export const protectedRoutes = ["/home", "/settings", "/check-email-verification"];
 
-export const isAuthRoute = (path: string) => {
-    return authRoutes.some((route) => path === route || path.startsWith(`${route}/`));
-};
-
-export const isPublicRoute = (path: string) => {
-    return publicRoutes.some((route) => path === route || path.startsWith(`${route}/`));
-};
+export const isAuthRoute = (path: string) => authRoutes.includes(path);
+export const isPublicRoute = (path: string) => publicRoutes.includes(path);
+export const isProtectedRoute = (path: string) => protectedRoutes.includes(path);

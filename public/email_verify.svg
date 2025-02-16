@@ -1,0 +1,24 @@
+<svg version="1.1" id="Icons"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" xml:space="preserve">
+    <style>
+    @media (prefers-color-scheme: dark) {
+      .theme-aware-stroke {
+        stroke: #ffffff;
+      }
+    }
+    @media (prefers-color-scheme: light) {
+      .theme-aware-stroke {
+        stroke: #000000;
+      }
+    }
+    .theme-aware-stroke {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10;
+    }
+    </style>
+    <path class="theme-aware-stroke" d="m3 10 13 8 13-8m-9 14h11v7H20zm9 0h-7v-2.5c0-1.9 1.6-3.5 3.5-3.5h0c1.9 0 3.5 1.6 3.5 3.5z"/>
+    <path class="theme-aware-stroke" d="M20 27H7c-2.2 0-4-1.8-4-4V9c0-2.2 1.8-4 4-4h18c2.2 0 4 1.8 4 4v15"/>
+</svg>

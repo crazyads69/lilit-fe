@@ -20,6 +20,7 @@ import "@ant-design/v5-patch-for-react-19";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 
 import { AlertDisplay } from "@/components/global/alert-display/alert-display";
@@ -37,6 +38,7 @@ const { Item } = Form;
 const { Password } = Input;
 
 export default function RegisterPage() {
+    const router = useRouter();
     const [register, { isLoading }] = useRegisterMutation();
     const dispatch = useAppDispatch();
     const { showMessage } = useMessage();
@@ -67,7 +69,7 @@ export default function RegisterPage() {
                 "Đăng ký thành công",
                 "Bạn đã đăng ký thành công tài khoản của mình",
             );
-            // TODO: Redirect to home page
+            router.push("/check-email-verification");
         } catch (error) {
             console.log("Failed to register:", error);
             showMessage("error", "Đăng ký thất bại", "Đã xảy ra lỗi khi đăng ký");

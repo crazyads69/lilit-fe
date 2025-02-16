@@ -6,10 +6,16 @@ import {
     registerInputSchema,
 } from "@/schemas/auth/auth-input/auth-input";
 import {
+    CheckEmailVerificationResponse,
+    checkEmailVerificationResponseSchema,
     LoginResponse,
     loginResponseSchema,
+    LogoutResponse,
+    logoutResponseSchema,
     RegisterResponse,
     registerResponseSchema,
+    ResendEmailVerificationResponse,
+    resendEmailVerificationResponseSchema,
 } from "@/schemas/auth/auth-response/auth-response";
 
 import { baseApi } from "../base-api/base-api";
@@ -45,7 +51,7 @@ export const authApi = baseApi.injectEndpoints({
             transformResponse: (response) => registerResponseSchema.parse(response),
             invalidatesTags: ["Auth"],
         }),
-        logout: builder.mutation<void, void>({
+        logout: builder.mutation<LogoutResponse, void>({
             query: () => ({
                 url: "/v1/auth/logout",
                 method: "POST",
@@ -61,8 +67,31 @@ export const authApi = baseApi.injectEndpoints({
                     console.log("Logout failed");
                 }
             },
+            transformResponse: (response) => logoutResponseSchema.parse(response),
+        }),
+        checkEmailVerification: builder.mutation<CheckEmailVerificationResponse, void>({
+            query: () => ({
+                url: "/v1/auth/check-email-verification",
+                method: "POST",
+            }),
+            transformResponse: (response) => checkEmailVerificationResponseSchema.parse(response),
+            invalidatesTags: ["Auth"],
+        }),
+        resendEmailVerification: builder.mutation<ResendEmailVerificationResponse, void>({
+            query: () => ({
+                url: "/v1/auth/resend-verification-email",
+                method: "POST",
+            }),
+            invalidatesTags: ["Auth"],
+            transformResponse: (response) => resendEmailVerificationResponseSchema.parse(response),
         }),
     }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = authApi;
+export const {
+    useLoginMutation,
+    useRegisterMutation,
+    useLogoutMutation,
+    useCheckEmailVerificationMutation,
+    useResendEmailVerificationMutation,
+} = authApi;
