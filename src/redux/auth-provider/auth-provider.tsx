@@ -16,7 +16,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const { accessToken, refreshToken } = useAppSelector((state) => state.auth);
     const [isLoading, setIsLoading] = useState(true);
     const lastPathRef = useRef(pathname);
-    const isInitialMount = useRef(true);
 
     const {
         data: user,
@@ -31,12 +30,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
     useEffect(() => {
         const handleAuth = async () => {
-            if (isInitialMount.current) {
-                isInitialMount.current = false;
-
-                return;
-            }
-
             // If public route, allow access
             if (isPublicRoute(pathname)) {
                 setIsLoading(false);
@@ -91,12 +84,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
     // Detect route change and refetch user data only if necessary
     useEffect(() => {
-        if (
-            accessToken &&
-            refreshToken &&
-            pathname !== lastPathRef.current &&
-            !isInitialMount.current
-        ) {
+        if (accessToken && refreshToken && pathname !== lastPathRef.current) {
             refetchUser();
             lastPathRef.current = pathname;
         }
