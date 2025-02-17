@@ -2,7 +2,6 @@
 
 import { MailOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Layout, Typography, Card, Button, Flex, Space } from "antd";
-
 import "@ant-design/v5-patch-for-react-19";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +19,7 @@ import {
     useCheckEmailVerificationMutation,
     useResendEmailVerificationMutation,
 } from "@/services/auth-api/auth-api";
+import { baseApi } from "@/services/base-api/base-api";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -42,14 +42,19 @@ export default function CheckEmailVerificationPage() {
     useEffect(() => {
         const verificationInterval = setInterval(async () => {
             try {
-                await checkEmailVerification().unwrap();
+                const result = await checkEmailVerification().unwrap();
 
-                showMessage("success", "Xác thực thành công", "Email của bạn đã được xác thực");
-                if (currentUser) {
-                    dispatch(setCurrentUser({ ...currentUser, is_verified: true }));
+                if (result.status_code === 200 && result.data.user.is_verified) {
+                    clearInterval(verificationInterval);
+                    showMessage("success", "Xác thực thành công", "Email của bạn đã được xác thực");
+
+                    if (currentUser) {
+                        dispatch(setCurrentUser({ ...currentUser, is_verified: true }));
+                        dispatch(baseApi.util.invalidateTags(["User"]));
+                    }
+
+                    router.replace("/home");
                 }
-                router.replace("/home");
-                clearInterval(verificationInterval);
             } catch (error) {
                 console.log("Checking email verification:", error);
             }

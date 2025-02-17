@@ -98,6 +98,13 @@ export default function manifest(): MetadataRoute.Manifest {
                 url: "/payment",
                 icons: [{ src: "/web-app-manifest-192x192.png", sizes: "192x192" }],
             },
+            {
+                name: "Xác thực email",
+                short_name: "Check Email",
+                description: "Đi đến trang xác thực email",
+                url: "/check-email-verification",
+                icons: [{ src: "/web-app-manifest-192x192.png", sizes: "192x192" }],
+            },
         ],
         categories: ["books", "entertainment", "lifestyle", "social", "utilities", "productivity"],
         lang: "vi-VN",

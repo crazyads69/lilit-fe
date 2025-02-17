@@ -14,6 +14,7 @@ export const userApi = baseApi.injectEndpoints({
 
                 return validatedResponse.data.user;
             },
+            providesTags: ["User"],
         }),
     }),
 });

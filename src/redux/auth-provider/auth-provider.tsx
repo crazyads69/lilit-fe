@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import FullLoading from "@/components/global/loading/full-loading";
 import { useAppDispatch, useAppSelector } from "@/hooks/use-redux/use-redux";
@@ -15,17 +15,28 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const dispatch = useAppDispatch();
     const { accessToken, refreshToken } = useAppSelector((state) => state.auth);
     const [isLoading, setIsLoading] = useState(true);
+    const lastPathRef = useRef(pathname);
+    const isInitialMount = useRef(true);
 
     const {
         data: user,
         error,
         isLoading: isUserLoading,
+        isFetching: isUserFetching,
+        refetch: refetchUser,
     } = useGetCurrentUserQuery(undefined, {
         skip: !accessToken && !refreshToken,
+        refetchOnMountOrArgChange: true,
     });
 
     useEffect(() => {
         const handleAuth = async () => {
+            if (isInitialMount.current) {
+                isInitialMount.current = false;
+
+                return;
+            }
+
             // If public route, allow access
             if (isPublicRoute(pathname)) {
                 setIsLoading(false);
@@ -45,10 +56,12 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
             }
 
             // Handle authenticated cases
-            if (!isUserLoading) {
+            if (!isUserLoading && !isUserFetching) {
                 if (user && !error) {
                     dispatch(setCurrentUser(user));
-                    if (!user.is_verified && pathname !== "/check-email-verification") {
+                    if (user.is_verified && pathname === "/check-email-verification") {
+                        await router.replace("/home");
+                    } else if (!user.is_verified && pathname !== "/check-email-verification") {
                         await router.replace("/check-email-verification");
                     } else if (isAuthRoute(pathname) && user.is_verified) {
                         await router.replace("/home");
@@ -64,9 +77,32 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
         };
 
         handleAuth();
-    }, [accessToken, refreshToken, user, error, isUserLoading, dispatch, router, pathname]);
+    }, [
+        accessToken,
+        refreshToken,
+        user,
+        error,
+        isUserLoading,
+        isUserFetching,
+        dispatch,
+        router,
+        pathname,
+    ]);
 
-    if (isLoading || isUserLoading) {
+    // Detect route change and refetch user data only if necessary
+    useEffect(() => {
+        if (
+            accessToken &&
+            refreshToken &&
+            pathname !== lastPathRef.current &&
+            !isInitialMount.current
+        ) {
+            refetchUser();
+            lastPathRef.current = pathname;
+        }
+    }, [pathname, accessToken, refreshToken, refetchUser]);
+
+    if (isLoading || isUserLoading || isUserFetching) {
         return <FullLoading />;
     }
 
