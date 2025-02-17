@@ -38,10 +38,15 @@ export default function CheckEmailVerificationPage() {
         useResendEmailVerificationMutation();
     const { showMessage } = useMessage();
     const [countdown, setCountdown] = useState(0);
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
     useEffect(() => {
         const verificationInterval = setInterval(async () => {
             try {
+                if (currentUser?.is_verified) {
+                    return;
+                }
+
                 const result = await checkEmailVerification().unwrap();
 
                 if (result.status_code === 200 && result.data.user.is_verified) {
@@ -64,19 +69,57 @@ export default function CheckEmailVerificationPage() {
     }, [checkEmailVerification, router, showMessage, currentUser, dispatch]);
 
     useEffect(() => {
-        if (countdown > 0) {
+        const initialCountdown = getRemainingCooldownTime();
+
+        if (isInitialLoad && initialCountdown === 0) {
+            // If it's the initial load and there's no existing cooldown, set it to COOLDOWN_TIME
+            setCountdown(COOLDOWN_TIME);
+            const cooldownEndTime = Date.now() + COOLDOWN_TIME * 1000;
+
+            localStorage.setItem("emailVerificationCooldownEnd", cooldownEndTime.toString());
+            setIsInitialLoad(false);
+        } else {
+            setCountdown(initialCountdown);
+        }
+
+        if (initialCountdown > 0 || isInitialLoad) {
             const timer = setInterval(() => {
-                setCountdown((prevCountdown) => prevCountdown - 1);
+                setCountdown((prevCountdown) => {
+                    const newCountdown = Math.max(0, prevCountdown - 1);
+
+                    if (newCountdown === 0) {
+                        localStorage.removeItem("emailVerificationCooldownEnd");
+                    }
+
+                    return newCountdown;
+                });
             }, 1000);
 
             return () => clearInterval(timer);
         }
-    }, [countdown]);
+    }, [isInitialLoad]);
+
+    const getRemainingCooldownTime = () => {
+        const cooldownEndTime = localStorage.getItem("emailVerificationCooldownEnd");
+
+        if (cooldownEndTime) {
+            const remainingTime = Math.max(0, parseInt(cooldownEndTime) - Date.now());
+
+            return Math.ceil(remainingTime / 1000);
+        }
+
+        // If no stored cooldown, and it's initial load, return full time:
+        return COOLDOWN_TIME;
+    };
 
     const handleResendVerification = async () => {
         try {
             await resendEmailVerification().unwrap();
+            const cooldownEndTime = Date.now() + COOLDOWN_TIME * 1000;
+
+            localStorage.setItem("emailVerificationCooldownEnd", cooldownEndTime.toString());
             setCountdown(COOLDOWN_TIME);
+            setIsInitialLoad(false);
             showMessage("success", "Gửi lại thành công", "Email xác thực đã được gửi lại");
         } catch (error: any) {
             if (error?.data?.message_vi) {
